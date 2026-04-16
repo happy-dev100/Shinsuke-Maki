@@ -29,7 +29,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Express', level: 90, years: 7 },
       { name: 'GraphQL', level: 82, years: 4 },
       { name: 'REST API', level: 95, years: 9 },
-      { name: 'Python', level: 70, years: 3 },
+      { name: 'Python', level: 96, years: 3 },
     ],
   },
   {
