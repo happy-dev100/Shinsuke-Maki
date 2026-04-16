@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { useTranslations, useLocale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getAllBlogSlugs, getBlogPost } from '@/lib/blog';
@@ -20,17 +20,7 @@ export default async function BlogPostPage({
 
   if (!post) notFound();
 
-  return <BlogPost post={post} locale={locale} />;
-}
-
-function BlogPost({
-  post,
-  locale,
-}: {
-  post: NonNullable<ReturnType<typeof getBlogPost>>;
-  locale: string;
-}) {
-  const t = useTranslations('blog');
+  const t = await getTranslations({ locale, namespace: 'blog' });
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
