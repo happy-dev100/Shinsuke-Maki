@@ -16,6 +16,32 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'pato',
+    title: 'pato（パト）',
+    description: {
+      en: 'Large-scale redevelopment of pato, Japan\'s leading entertainment matching service connecting executives with top-tier cast members. Serving 500,000+ matches across major cities nationwide.',
+      ja: '国内No.1エンタメマッチングサービス「pato」の大規模リニューアル開発。全国主要都市で累計50万回以上のマッチングを実現するプラットフォーム。',
+    },
+    overview: {
+      en: 'pato is a premium entertainment matching platform for executives, featuring two booking systems: PATOCALL (request a cast member to arrive within 30 minutes) and KOPATO (schedule in advance with a preferred cast). The large-scale redevelopment involved a complete overhaul of the matching engine, real-time messaging system, payment flow, and cast management features while maintaining service continuity.',
+      ja: 'patoはエグゼクティブ層向けプレミアムエンタメマッチングサービスです。最短30分でキャストを呼べる「PATOCALL」と、事前に日程調整できる「KOPATO」の2つのシステムを搭載。大規模リニューアルではサービス継続を維持しながら、マッチングエンジン・リアルタイムメッセージング・決済フロー・キャスト管理機能の全面刷新を実施しました。',
+    },
+    challenges: {
+      en: 'The biggest challenge was executing a large-scale architectural overhaul without service downtime, as the platform operates 24/7. We employed a strangler fig migration pattern, incrementally replacing legacy components while maintaining backward compatibility. Ensuring real-time messaging reliability across thousands of concurrent users also required careful WebSocket architecture design.',
+      ja: '24時間365日稼働するサービスをダウンタイムなしで大規模刷新することが最大の課題でした。ストラングラーフィグパターンを採用し、後方互換性を保ちながらレガシーコンポーネントを段階的に置き換えていきました。数千の同時接続ユーザーを抱えるリアルタイムメッセージングの信頼性確保にも、WebSocketアーキテクチャの慎重な設計が必要でした。',
+    },
+    duration: { en: 'February 2020 – March 2021', ja: '2020年2月〜2021年3月' },
+    teamSize: { en: '5 engineers', ja: '5名' },
+    myRole: {
+      en: 'Worked across the full stack in a cross-functional role — contributed to frontend UI development, backend API implementation, real-time messaging features, and QA. Handled diverse tasks across multiple areas of the platform throughout the redevelopment cycle.',
+      ja: 'フルスタックにわたるオールラウンドな役割を担当。フロントエンドUI開発、バックエンドAPI実装、リアルタイムメッセージング機能、QAまで幅広く貢献。リニューアル期間を通じてプラットフォームの複数領域にまたがる多様なタスクを担当しました。',
+    },
+    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Redis', 'Socket.io', 'AWS'],
+    demo: 'https://pato.today/u/guest',
+    image: '/pato.png',
+    featured: true,
+  },
+  {
     slug: 'pikapaka-btm',
     title: 'ピカパカ出張DX',
     description: {
