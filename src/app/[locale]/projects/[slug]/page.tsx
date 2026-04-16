@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { ExternalLink } from 'lucide-react';
@@ -13,19 +13,18 @@ export function generateStaticParams() {
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) notFound();
 
-  return <ProjectDetail project={project} />;
+  return <ProjectDetail project={project} locale={locale as 'en' | 'ja'} />;
 }
 
-function ProjectDetail({ project }: { project: (typeof projects)[0] }) {
+function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; locale: 'en' | 'ja' }) {
   const t = useTranslations('projects');
-  const locale = useLocale() as 'en' | 'ja';
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
