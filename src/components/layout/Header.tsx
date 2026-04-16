@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { LogoMark } from './LogoMark';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { personal } from '@/data/personal';
 
 const navLinks = [
@@ -17,6 +18,25 @@ const navLinks = [
   { href: '/blog', key: 'blog' },
   { href: '/contact', key: 'contact' },
 ] as const;
+
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div className="w-8 h-8" />;
+
+  return (
+    <button
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      className="p-1.5 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+      aria-label="Toggle theme"
+    >
+      {resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+    </button>
+  );
+}
 
 export function Header() {
   const t = useTranslations('nav');
@@ -53,7 +73,8 @@ export function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <LocaleSwitcher />
             <button
               className="md:hidden p-1.5 text-neutral-700 dark:text-neutral-300"

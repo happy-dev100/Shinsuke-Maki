@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
 }
@@ -9,11 +11,9 @@
   --foreground: #111111;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0c0c0c;
-    --foreground: #f0f0f0;
-  }
+.dark {
+  --background: #0c0c0c;
+  --foreground: #f0f0f0;
 }
 
 * {
@@ -37,11 +37,9 @@ body {
   color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  ::selection {
-    background: #f0f0f0;
-    color: #111;
-  }
+.dark ::selection {
+  background: #f0f0f0;
+  color: #111;
 }
 
 /* Hero image entry animation — CSS only to avoid SSR hydration mismatch */
@@ -93,10 +91,8 @@ body {
   border-radius: 4px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose code {
-    background: #1e1e1e;
-  }
+.dark .prose code {
+  background: #1e1e1e;
 }
 
 .prose pre {
@@ -136,9 +132,7 @@ body {
   margin-left: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  .prose blockquote {
-    border-left-color: #333;
-    color: #999;
-  }
+.dark .prose blockquote {
+  border-left-color: #333;
+  color: #999;
 }
