@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "title": "牧 信介 | フルスタックエンジニア",
+    "description": "9年以上の経験を持つフルスタックエンジニア。信頼性の高いWebアプリケーションを構築します。"
+  },
+  "nav": {
+    "home": "ホーム",
+    "about": "について",
+    "skills": "スキル",
+    "experience": "職歴",
+    "projects": "プロジェクト",
+    "blog": "ブログ",
+    "contact": "お問い合わせ",
+    "open_menu": "メニューを開く",
+    "close_menu": "メニューを閉じる"
+  },
+  "home": {
+    "greeting": "こんにちは、",
+    "hero_tagline": "Web開発9年以上の経験を持ち、直近の3年間はAI（人工知能）への強い関心を深め、最先端のAI技術の習得に取り組んできました。チームを一人でこなせるという信念と勇気を持って会社を離れ、フリーランスとして独立しました。",
+    "cta_projects": "プロジェクトを見る",
+    "cta_contact": "お問い合わせ",
+    "featured_projects": "注目プロジェクト",
+    "view_all_projects": "全プロジェクトを見る",
+    "skills_section": "主要スキル",
+    "view_all_skills": "全スキルを見る",
+    "ai_section": "AIスタック",
+    "recent_posts": "最近の投稿",
+    "view_all_posts": "全記事を見る"
+  },
+  "about": {
+    "page_title": "について",
+    "subtitle": "日本を拠点とするフルスタックエンジニア",
+    "intro": "9年間コードを書き続け、AIを武器にチームを一人で背負う覚悟で独立しました。技術は手段、目的はただ一つ——本当に人の役に立つものをつくること。",
+    "story_title": "これまでの歩み",
+    "story": "コードを書き始めた日から、自分の手で何かを動かすことへの純粋な喜びがありました。ジュニアエンジニアとして最初に書いたコードが本番環境に反映された瞬間、画面の前で小さくガッツポーズをしたことを今でも覚えています。それが9年以上続くエンジニア人生の出発点でした。\n\nスタートアップでは締め切りと戦いながら、要件が朝と夕方で変わるような環境の中で、どんな状況でも動くコードを書く力を身につけました。大企業では数十万人のユーザーが使うシステムを支える責任の重さを学び、設計の選択一つが障害に直結する緊張感を味わいました。その両極端な経験が、自分のエンジニアとしての土台を作りました。\n\n転換点は3年前に訪れました。AIという波が世界を変え始めているのを肌で感じ、「このまま傍観者でいてはいけない」という焦りにも似た確信が芽生えました。業務の傍ら、深夜まで機械学習の論文を読み、LLMのAPIを触り、プロンプトエンジニアリングからファインチューニングまで、ひたすら手を動かし続けました。やがてAIはただの興味ではなく、自分の武器になっていきました。\n\nそして、決断の日が来ました。安定した給与、慣れた環境、信頼できる仲間——それらすべてを手放して独立する選択は、簡単ではありませんでした。それでも踏み出せたのは、「自分一人でチームの代わりができる」という根拠のある自信があったからです。Web開発の深い経験とAIの実践力を組み合わせれば、一人でも圧倒的な価値を届けられると信じていました。\n\n今、フリーランスエンジニアとして、その信念を一つひとつ証明しています。技術は手段であり、目的は常に「人の役に立つものを作ること」。その原点は、コードを書き始めたあの日から、何も変わっていません。",
+    "values_title": "大切にしていること",
+    "value_quality_title": "コード品質",
+    "value_quality_desc": "時間が経っても読みやすく、保守しやすいクリーンなコード。",
+    "value_reliability_title": "信頼性",
+    "value_reliability_desc": "実際の運用環境で正しく動作するシステム。",
+    "value_simplicity_title": "シンプルさ",
+    "value_simplicity_desc": "問題を効果的に解決する、最もシンプルな方法。",
+    "value_learning_title": "継続的な学習",
+    "value_learning_desc": "進化するWeb技術のトレンドに常にキャッチアップする姿勢。",
+    "location": "奈良県奈良市",
+    "experience_years": "9年以上",
+    "experience_label": "経験年数",
+    "location_label": "拠点",
+    "availability": "案件相談受付中",
+    "availability_label": "ステータス",
+    "download_cv": "CVをダウンロード"
+  },
+  "skills": {
+    "page_title": "スキル",
+    "subtitle": "使用している技術とツール",
+    "years_exp": "年",
+    "frontend": "フロントエンド",
+    "backend": "バックエンド",
+    "ai": "AIスタック",
+    "database": "データベース",
+    "cloud_devops": "クラウド & DevOps",
+    "tools": "ツール・その他"
+  },
+  "experience": {
+    "page_title": "職歴",
+    "subtitle": "これまでのキャリア",
+    "present": "現在",
+    "responsibilities": "担当業務"
+  },
+  "projects": {
+    "page_title": "プロジェクト",
+    "subtitle": "制作してきたもの",
+    "visit": "サイトを見る",
+    "duration": "開発期間",
+    "team_size": "開発人員",
+    "my_role": "担当領域",
+    "tech_stack": "技術スタック",
+    "all_projects": "全プロジェクト",
+    "featured": "注目",
+    "back_to_projects": "← プロジェクト一覧に戻る",
+    "overview": "概要",
+    "challenges": "課題と解決策",
+    "no_demo": "デモなし"
+  },
+  "blog": {
+    "page_title": "ブログ",
+    "subtitle": "Web開発とソフトウェアエンジニアリングについての考察",
+    "read_more": "続きを読む",
+    "back_to_blog": "← ブログ一覧に戻る",
+    "published": "公開日",
+    "min_read": "分で読める",
+    "tags": "タグ",
+    "no_posts": "まだ記事がありません。"
+  },
+  "contact": {
+    "page_title": "お問い合わせ",
+    "subtitle": "プロジェクトのご相談や、お気軽にご連絡ください。",
+    "name_label": "お名前",
+    "name_placeholder": "山田 太郎",
+    "email_label": "メールアドレス",
+    "email_placeholder": "your@email.com",
+    "message_label": "メッセージ",
+    "message_placeholder": "プロジェクトについてのご相談や、お気軽にどうぞ...",
+    "submit": "送信する",
+    "submitting": "送信中...",
+    "success_title": "送信完了！",
+    "success_message": "お問い合わせありがとうございます。できる限り早くご返信いたします。",
+    "error_title": "送信に失敗しました。",
+    "error_message": "もう一度お試しいただくか、直接メールでご連絡ください。",
+    "send_another": "別のメッセージを送る",
+    "required": "必須"
+  },
+  "footer": {
+    "built_with": "Next.js & Tailwind CSS で構築",
+    "rights": "全著作権所有。"
+  },
+  "common": {
+    "view_more": "もっと見る",
+    "back": "戻る",
+    "loading": "読み込み中...",
+    "not_found": "ページが見つかりません"
+  }
+}

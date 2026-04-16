@@ -1,0 +1,109 @@
+---
+title: "TypeScript Best Practices for Large-Scale Applications"
+date: "2025-11-20"
+excerpt: "Key patterns and principles I've learned from 7 years of TypeScript in production — from strict type safety to avoiding common pitfalls."
+tags: ["TypeScript", "Best Practices", "Architecture"]
+---
+
+After 7 years of writing TypeScript in production codebases, I've developed a set of practices that make a real difference at scale. This post covers the ones I consider non-negotiable.
+
+## 1. Enable Strict Mode — No Exceptions
+
+The first thing I do in any new project:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true
+  }
+}
+```
+
+`strict: true` enables `strictNullChecks`, `noImplicitAny`, and several other checks that catch bugs before they reach production. Projects that disable these options tend to accumulate implicit `any` types and null-reference bugs over time.
+
+## 2. Prefer Interfaces for Object Shapes, Types for Unions
+
+This is a subtle distinction that matters for readability and extensibility:
+
+```typescript
+// Use interface for object shapes
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+// Use type for unions and computed types
+type Status = 'active' | 'inactive' | 'pending';
+type UserOrAdmin = User | AdminUser;
+```
+
+Interfaces support declaration merging and are slightly more ergonomic when extending. Types are more flexible for complex compositions.
+
+## 3. Use `satisfies` for Safer Object Literals
+
+Introduced in TypeScript 4.9, `satisfies` validates that a value matches a type without widening the inferred type:
+
+```typescript
+type Config = {
+  port: number;
+  host: string;
+};
+
+const config = {
+  port: 3000,
+  host: 'localhost',
+  debug: true, // Error: not in Config
+} satisfies Config;
+
+// config.port is still typed as number (not Config['port'])
+```
+
+This is especially useful for configuration objects and lookup tables.
+
+## 4. Avoid `as` Casts — Use Type Guards Instead
+
+Type assertions (`as`) bypass the type system. Prefer type guards:
+
+```typescript
+// Bad
+const user = response.data as User;
+
+// Good
+function isUser(value: unknown): value is User {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'id' in value &&
+    'name' in value
+  );
+}
+
+if (isUser(response.data)) {
+  // TypeScript knows it's User here
+  console.log(response.data.name);
+}
+```
+
+## 5. Use `unknown` Over `any` for External Data
+
+When dealing with API responses or parsed JSON, use `unknown`:
+
+```typescript
+async function fetchUser(id: string): Promise<User> {
+  const response = await fetch(`/api/users/${id}`);
+  const data: unknown = await response.json();
+
+  if (!isUser(data)) {
+    throw new Error('Invalid user data');
+  }
+
+  return data;
+}
+```
+
+This forces you to validate external data rather than assuming its shape.
+
+## Final Thoughts
+
+These practices aren't about following rules for their own sake — they're about building systems that remain comprehensible and safe as they grow. TypeScript's value compounds over time. The more carefully you model your domain with types, the more the compiler works for you.

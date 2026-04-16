@@ -1,0 +1,109 @@
+---
+title: "大規模アプリケーションのためのTypeScriptベストプラクティス"
+date: "2025-11-20"
+excerpt: "7年間のTypeScript本番運用から学んだ重要なパターンと原則。厳格な型安全性から落とし穴の回避まで。"
+tags: ["TypeScript", "ベストプラクティス", "アーキテクチャ"]
+---
+
+TypeScriptを本番コードベースで7年間書き続けた経験から、スケールで本当に差が出るプラクティスを厳選しました。私が「絶対に妥協しない」と考えるものを紹介します。
+
+## 1. Strictモードを有効にする — 例外なし
+
+どんな新規プロジェクトでも最初にやること：
+
+```json
+{
+  "compilerOptions": {
+    "strict": true
+  }
+}
+```
+
+`strict: true` は `strictNullChecks`、`noImplicitAny` などのチェックを有効にし、バグが本番環境に届く前にキャッチします。これを無効にしているプロジェクトは時間とともに暗黙的な `any` 型とnull参照バグが積み重なる傾向があります。
+
+## 2. オブジェクト形状にはInterface、ユニオンにはType
+
+読みやすさと拡張性に影響する微妙な違いです：
+
+```typescript
+// オブジェクト形状にはinterfaceを使う
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+// ユニオンや複合型にはtypeを使う
+type Status = 'active' | 'inactive' | 'pending';
+type UserOrAdmin = User | AdminUser;
+```
+
+インターフェースは宣言のマージをサポートし、継承時のエルゴノミクスがやや優れています。型は複雑な合成に対してより柔軟です。
+
+## 3. より安全なオブジェクトリテラルのために `satisfies` を使う
+
+TypeScript 4.9で導入された `satisfies` は、推論型を広げることなく値が型と一致するかを検証します：
+
+```typescript
+type Config = {
+  port: number;
+  host: string;
+};
+
+const config = {
+  port: 3000,
+  host: 'localhost',
+  debug: true, // エラー: Configにない
+} satisfies Config;
+
+// config.portはまだnumber型（Config['port']ではなく）
+```
+
+設定オブジェクトやルックアップテーブルに特に便利です。
+
+## 4. `as` キャストを避ける — 型ガードを使う
+
+型アサーション（`as`）は型システムを回避します。型ガードを優先しましょう：
+
+```typescript
+// 悪い例
+const user = response.data as User;
+
+// 良い例
+function isUser(value: unknown): value is User {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'id' in value &&
+    'name' in value
+  );
+}
+
+if (isUser(response.data)) {
+  // TypeScriptはここでUser型と認識する
+  console.log(response.data.name);
+}
+```
+
+## 5. 外部データには `any` より `unknown` を使う
+
+APIレスポンスやパースしたJSONには `unknown` を使いましょう：
+
+```typescript
+async function fetchUser(id: string): Promise<User> {
+  const response = await fetch(`/api/users/${id}`);
+  const data: unknown = await response.json();
+
+  if (!isUser(data)) {
+    throw new Error('不正なユーザーデータ');
+  }
+
+  return data;
+}
+```
+
+これにより外部データの形状を仮定するのではなく、検証することが強制されます。
+
+## まとめ
+
+これらのプラクティスはルールのためにルールに従うのではなく、システムが成長しても理解しやすく安全であり続けるためのものです。TypeScriptの価値は時間とともに複利で増していきます。型でドメインを丁寧にモデル化するほど、コンパイラがあなたのために働いてくれます。

@@ -1,0 +1,137 @@
+---
+title: "A Practical Guide to Next.js App Router"
+date: "2025-09-05"
+excerpt: "Everything I wish I knew when migrating from Pages Router to App Router — server components, data fetching, and layouts explained."
+tags: ["Next.js", "React", "Web Development"]
+---
+
+The Next.js App Router is now the recommended way to build Next.js applications. After migrating several production apps, I've put together a practical guide covering the patterns that matter most.
+
+## Server Components vs. Client Components
+
+The most important mental shift: **components are server-rendered by default**.
+
+```tsx
+// app/page.tsx - This is a Server Component
+// It can fetch data directly, access databases, etc.
+export default async function Page() {
+  const data = await fetchFromDB(); // runs on server
+  return <main>{/* render data */}</main>;
+}
+```
+
+You only need `'use client'` when you need:
+- Browser APIs (`window`, `document`, etc.)
+- React hooks (`useState`, `useEffect`, etc.)
+- Event listeners
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+**Key principle:** Keep as much logic as possible in Server Components. Pass only what's needed to Client Components.
+
+## Data Fetching Patterns
+
+### Fetch directly in Server Components
+
+```tsx
+// app/users/page.tsx
+export default async function UsersPage() {
+  const users = await fetch('https://api.example.com/users', {
+    next: { revalidate: 60 }, // revalidate every 60 seconds
+  }).then(r => r.json());
+
+  return (
+    <ul>
+      {users.map((user: User) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### Parallel data fetching
+
+Don't await sequentially — fetch in parallel:
+
+```tsx
+export default async function DashboardPage() {
+  // These run in parallel
+  const [user, posts, analytics] = await Promise.all([
+    getUser(),
+    getPosts(),
+    getAnalytics(),
+  ]);
+
+  return <Dashboard user={user} posts={posts} analytics={analytics} />;
+}
+```
+
+## Layout Hierarchy
+
+The nested layout system is one of the App Router's best features:
+
+```
+app/
+  layout.tsx          // root layout (always rendered)
+  page.tsx            // home page
+  dashboard/
+    layout.tsx        // dashboard layout (persists on navigation)
+    page.tsx          // /dashboard
+    settings/
+      page.tsx        // /dashboard/settings
+```
+
+Layouts don't remount on navigation — ideal for sidebars and persistent UI.
+
+## Loading and Error States
+
+```tsx
+// app/dashboard/loading.tsx - shown while page suspends
+export default function Loading() {
+  return <div>Loading dashboard...</div>;
+}
+
+// app/dashboard/error.tsx - catches errors in segment
+'use client';
+export default function Error({ error, reset }) {
+  return (
+    <div>
+      <h2>Something went wrong</h2>
+      <button onClick={reset}>Try again</button>
+    </div>
+  );
+}
+```
+
+## Route Handlers (API Routes)
+
+```tsx
+// app/api/contact/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  // handle request
+  return NextResponse.json({ success: true });
+}
+```
+
+## Key Takeaways
+
+1. Default to Server Components; use `'use client'` only when necessary
+2. Fetch data close to where it's used
+3. Use `Promise.all` for parallel data fetching
+4. Leverage the nested layout system for persistent UI
+5. Use `loading.tsx` and `error.tsx` for automatic loading and error states
+
+The App Router has a learning curve, but the mental model becomes natural quickly. The performance benefits from server-side rendering and reduced client JavaScript are worth the migration.

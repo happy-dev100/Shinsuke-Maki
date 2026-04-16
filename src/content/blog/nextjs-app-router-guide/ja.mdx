@@ -1,0 +1,137 @@
+---
+title: "Next.js App Routerの実践ガイド"
+date: "2025-09-05"
+excerpt: "Pages RouterからApp Routerへの移行で知っておきたかったこと。サーバーコンポーネント、データフェッチ、レイアウトを解説。"
+tags: ["Next.js", "React", "Web開発"]
+---
+
+Next.js App Routerは現在、Next.jsアプリケーション構築の推奨方法です。複数の本番アプリを移行した経験から、最も重要なパターンをまとめた実践ガイドです。
+
+## サーバーコンポーネント vs クライアントコンポーネント
+
+最も重要なメンタルモデルの転換：**コンポーネントはデフォルトでサーバーレンダリングされます**。
+
+```tsx
+// app/page.tsx - これはサーバーコンポーネント
+// データを直接フェッチしたり、DBにアクセスできる
+export default async function Page() {
+  const data = await fetchFromDB(); // サーバー上で実行
+  return <main>{/* データをレンダリング */}</main>;
+}
+```
+
+`'use client'` が必要なのは以下の場合のみです：
+- ブラウザAPI（`window`、`document` など）
+- Reactフック（`useState`、`useEffect` など）
+- イベントリスナー
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+**重要原則：** できるだけ多くのロジックをサーバーコンポーネントに置く。クライアントコンポーネントには必要なものだけを渡す。
+
+## データフェッチのパターン
+
+### サーバーコンポーネントで直接フェッチ
+
+```tsx
+// app/users/page.tsx
+export default async function UsersPage() {
+  const users = await fetch('https://api.example.com/users', {
+    next: { revalidate: 60 }, // 60秒ごとに再検証
+  }).then(r => r.json());
+
+  return (
+    <ul>
+      {users.map((user: User) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### 並列データフェッチ
+
+順番にawaitするのではなく、並列でフェッチしましょう：
+
+```tsx
+export default async function DashboardPage() {
+  // これらは並列で実行される
+  const [user, posts, analytics] = await Promise.all([
+    getUser(),
+    getPosts(),
+    getAnalytics(),
+  ]);
+
+  return <Dashboard user={user} posts={posts} analytics={analytics} />;
+}
+```
+
+## レイアウト階層
+
+ネストされたレイアウトシステムはApp Routerの最高の機能の一つです：
+
+```
+app/
+  layout.tsx          // ルートレイアウト（常にレンダリング）
+  page.tsx            // ホームページ
+  dashboard/
+    layout.tsx        // ダッシュボードレイアウト（ナビゲーション時も持続）
+    page.tsx          // /dashboard
+    settings/
+      page.tsx        // /dashboard/settings
+```
+
+レイアウトはナビゲーション時に再マウントされません。サイドバーや永続的なUIに最適です。
+
+## ローディングとエラー状態
+
+```tsx
+// app/dashboard/loading.tsx - ページのサスペンス中に表示
+export default function Loading() {
+  return <div>ダッシュボード読み込み中...</div>;
+}
+
+// app/dashboard/error.tsx - セグメント内のエラーをキャッチ
+'use client';
+export default function Error({ error, reset }) {
+  return (
+    <div>
+      <h2>エラーが発生しました</h2>
+      <button onClick={reset}>再試行</button>
+    </div>
+  );
+}
+```
+
+## ルートハンドラー（APIルート）
+
+```tsx
+// app/api/contact/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  // リクエスト処理
+  return NextResponse.json({ success: true });
+}
+```
+
+## まとめ
+
+1. サーバーコンポーネントをデフォルトにし、`'use client'` は必要な場合のみ
+2. データはそれが使われる場所の近くでフェッチする
+3. 並列データフェッチには `Promise.all` を使う
+4. 永続的なUIにはネストされたレイアウトを活用する
+5. 自動ローディング・エラー状態のために `loading.tsx` と `error.tsx` を使う
+
+App Routerには学習曲線がありますが、メンタルモデルはすぐに自然なものになります。サーバーサイドレンダリングとクライアントJavaScriptの削減によるパフォーマンスの向上は、移行する価値があります。

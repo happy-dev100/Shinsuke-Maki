@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "title": "Shinsuke Maki | Full-Stack Engineer",
+    "description": "Full-Stack Engineer with 9 years of experience building reliable, scalable web applications."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu"
+  },
+  "home": {
+    "greeting": "Hi, I'm",
+    "hero_tagline": "I have over 9 years of web development experience and have spent the last 3 years developing a deep interest in Artificial Intelligence (AI) to master advanced AI technologies. I finally left my company to become independent and began working as a freelancer with the courage to believe that I could single-handedly replace a team.",
+    "cta_projects": "View Projects",
+    "cta_contact": "Get in Touch",
+    "featured_projects": "Featured Projects",
+    "view_all_projects": "View All Projects",
+    "skills_section": "Core Skills",
+    "view_all_skills": "View All Skills",
+    "ai_section": "AI Stack",
+    "recent_posts": "Recent Posts",
+    "view_all_posts": "View All Posts"
+  },
+  "about": {
+    "page_title": "About Me",
+    "subtitle": "Full-Stack Engineer based in Japan",
+    "intro": "Nine years of writing code. Three years of betting on AI. One decision to go independent and carry an entire team on my own. Technology is always the means — building something that truly matters to people is always the point.",
+    "story_title": "My Journey",
+    "story": "From the moment I wrote my first line of code, there was a pure, almost childlike joy in making something move on a screen. I still remember the day my first commit went live in production — I pumped my fist quietly at my desk, alone, and thought: this is what I want to do for the rest of my life. That was the beginning of a journey that has now spanned over nine years.\n\nIn the startup world, I learned to write code that works under pressure — when requirements change between morning and evening, when deadlines are yesterday, and when there is no safety net. In larger organizations, I felt the weight of responsibility that comes with systems used by hundreds of thousands of people, where a single architectural decision can cascade into an outage. Living both extremes forged the engineer I am today.\n\nThree years ago, everything shifted. I felt AI moving through the industry like a current — quiet at first, then impossible to ignore. I knew that standing on the sidelines was not an option. So I began studying in earnest: reading research papers late into the night, integrating LLM APIs into side projects, experimenting with prompt engineering, fine-tuning, and retrieval-augmented generation. Gradually, AI stopped being a curiosity and became a core part of my toolkit.\n\nThen came the hardest decision of my career. A stable salary, familiar colleagues, the comfort of belonging to something established — I walked away from all of it. Not recklessly, but with a clear-eyed conviction: that the combination of deep web engineering experience and real-world AI capability could make a single person as effective as an entire team. I left to prove that.\n\nToday, as a freelance engineer, I am living that proof — one project at a time. Technology is always the means; the end is always the same: to build something that genuinely helps people. That purpose has never changed since the day I wrote that first line of code.",
+    "values_title": "What I Value",
+    "value_quality_title": "Code Quality",
+    "value_quality_desc": "Clean, readable, and maintainable code that stands the test of time.",
+    "value_reliability_title": "Reliability",
+    "value_reliability_desc": "Systems that work correctly under real-world conditions.",
+    "value_simplicity_title": "Simplicity",
+    "value_simplicity_desc": "The simplest solution that solves the problem effectively.",
+    "value_learning_title": "Continuous Learning",
+    "value_learning_desc": "Staying current with the evolving landscape of web technology.",
+    "location": "Nara, Japan",
+    "experience_years": "9+ Years",
+    "experience_label": "Experience",
+    "location_label": "Location",
+    "availability": "Open to opportunities",
+    "availability_label": "Status",
+    "download_cv": "Download CV"
+  },
+  "skills": {
+    "page_title": "Skills",
+    "subtitle": "Technologies and tools I work with",
+    "years_exp": "yrs",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "ai": "AI Stack",
+    "database": "Database",
+    "cloud_devops": "Cloud & DevOps",
+    "tools": "Tools & Others"
+  },
+  "experience": {
+    "page_title": "Experience",
+    "subtitle": "My professional journey",
+    "present": "Present",
+    "responsibilities": "Responsibilities"
+  },
+  "projects": {
+    "page_title": "Projects",
+    "subtitle": "Things I've built",
+    "visit": "Visit",
+    "duration": "Duration",
+    "team_size": "Team Size",
+    "my_role": "My Role",
+    "tech_stack": "Tech Stack",
+    "all_projects": "All Projects",
+    "featured": "Featured",
+    "back_to_projects": "← Back to Projects",
+    "overview": "Overview",
+    "challenges": "Challenges & Solutions",
+    "no_demo": "No demo available"
+  },
+  "blog": {
+    "page_title": "Blog",
+    "subtitle": "Thoughts on web development and software engineering",
+    "read_more": "Read more",
+    "back_to_blog": "← Back to Blog",
+    "published": "Published",
+    "min_read": "min read",
+    "tags": "Tags",
+    "no_posts": "No posts yet."
+  },
+  "contact": {
+    "page_title": "Contact",
+    "subtitle": "Have a project in mind? Let's talk.",
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "message_label": "Message",
+    "message_placeholder": "Tell me about your project or just say hi...",
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "success_title": "Message sent!",
+    "success_message": "Thank you for reaching out. I'll get back to you as soon as possible.",
+    "error_title": "Something went wrong.",
+    "error_message": "Please try again or email me directly.",
+    "send_another": "Send another message",
+    "required": "Required"
+  },
+  "footer": {
+    "built_with": "Built with Next.js & Tailwind CSS",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "view_more": "View more",
+    "back": "Back",
+    "loading": "Loading...",
+    "not_found": "Page not found"
+  }
+}
