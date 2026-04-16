@@ -1,10 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { ArrowRight } from 'lucide-react';
 import { heroStagger, fadeUp } from '@/lib/animations';
+import dynamic from 'next/dynamic';
+
+const HeroShape = dynamic(
+  () => import('./HeroShape').then((m) => m.HeroShape),
+  { ssr: false }
+);
 
 interface HeroSectionProps {
   greeting: string;
@@ -74,23 +79,15 @@ export function HeroSection({
           </motion.div>
         </motion.div>
 
-        {/* Photo — CSS animation to avoid SSR hydration mismatch */}
-        <div className="flex-shrink-0 flex justify-center md:justify-end hero-image-animate">
-          <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72">
-            {/* Decorative border offset */}
-            <div className="absolute inset-0 rounded-2xl border border-neutral-200 dark:border-neutral-800 translate-x-2 translate-y-2" />
-            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900">
-              <Image
-                src="/i.jpg"
-                alt={name}
-                fill
-                className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
-                priority
-                sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, 288px"
-              />
-            </div>
-          </div>
-        </div>
+        {/* 3D Shape */}
+        <motion.div
+          className="flex-shrink-0 flex justify-center md:justify-end"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+        >
+          <HeroShape />
+        </motion.div>
       </div>
     </section>
   );
