@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { ExternalLink } from 'lucide-react';
@@ -20,11 +20,8 @@ export default async function ProjectDetailPage({
 
   if (!project) notFound();
 
-  return <ProjectDetail project={project} locale={locale as 'en' | 'ja'} />;
-}
-
-function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; locale: 'en' | 'ja' }) {
-  const t = useTranslations('projects');
+  const t = await getTranslations({ locale, namespace: 'projects' });
+  const l = locale as 'en' | 'ja';
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -55,11 +52,10 @@ function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; loc
           </div>
         </div>
         <p className="text-neutral-500 dark:text-neutral-400 text-lg leading-relaxed">
-          {project.description[locale]}
+          {project.description[l]}
         </p>
       </div>
 
-      {/* Hero image */}
       {project.image && (
         <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-10">
           <Image
@@ -92,7 +88,7 @@ function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; loc
             {t('overview')}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            {project.overview[locale]}
+            {project.overview[l]}
           </p>
         </div>
 
@@ -102,7 +98,7 @@ function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; loc
               {t('duration')}
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {project.duration[locale]}
+              {project.duration[l]}
             </p>
           </div>
         )}
@@ -113,7 +109,7 @@ function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; loc
               {t('team_size')}
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {project.teamSize[locale]}
+              {project.teamSize[l]}
             </p>
           </div>
         )}
@@ -124,7 +120,7 @@ function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; loc
               {t('my_role')}
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {project.myRole[locale]}
+              {project.myRole[l]}
             </p>
           </div>
         )}
@@ -134,7 +130,7 @@ function ProjectDetail({ project, locale }: { project: (typeof projects)[0]; loc
             {t('challenges')}
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
-            {project.challenges[locale]}
+            {project.challenges[l]}
           </p>
         </div>
       </div>
