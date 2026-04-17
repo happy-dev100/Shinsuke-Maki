@@ -51,7 +51,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'MongoDB', level: 78, years: 5 },
       { name: 'Redis', level: 80, years: 5 },
       { name: 'Prisma', level: 85, years: 3 },
-      { name: 'Supabase', level: 85, years: 2 },
+      { name: 'Supabase', level: 85, years: 7 },
     ],
   },
   {
