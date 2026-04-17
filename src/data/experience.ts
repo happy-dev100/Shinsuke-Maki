@@ -82,14 +82,14 @@ export const experiences: Experience[] = [
     responsibilities: {
       en: [
         'Led development of 10+ web applications from requirements gathering to production deployment',
-        'Introduced AI-assisted code review and documentation tooling, improving team velocity by 25%',
+        'Established code review processes and internal documentation standards, improving team consistency',
         'Collaborated with a remote developer in India on an international EC platform project',
         'Built a reusable React component library adopted across all client projects',
         'Integrated Stripe and PayPay payment gateways into multiple e-commerce platforms',
       ],
       ja: [
         '要件定義から本番デプロイまで10件以上のWebアプリケーション開発をリード',
-        'AIを活用したコードレビュー・ドキュメント作成ツールを導入し、チーム生産性を25%向上',
+        'コードレビュー体制と社内ドキュメント標準を整備し、チームの品質と一貫性を向上',
         'インドのリモート開発者と連携して国際向けECプラットフォームを開発',
         'すべてのクライアント案件で活用された再利用可能なReactコンポーネントライブラリを構築',
         '複数のECプラットフォームへStripeおよびPayPay決済ゲートウェイを統合',
