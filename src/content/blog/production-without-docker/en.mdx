@@ -1,0 +1,46 @@
+---
+title: "Building a Production Environment Without Docker"
+date: "2023-12-10"
+excerpt: "Not every project needs Docker. A look at what a Vercel + Railway + Supabase stack actually looks like in practice."
+tags: ["Infrastructure", "Vercel", "Railway", "Supabase", "Deployment"]
+---
+
+"Use Docker for production" gets repeated like a given. Docker is powerful, but not every project needs it.
+
+Working as a freelancer on small-to-mid-scale web applications, a Docker-free setup often has lower total cost.
+
+## The Stack: Vercel + Supabase + Railway
+
+Frontend / BFF: Vercel (Next.js)
+Database / Auth: Supabase (PostgreSQL + Auth + Storage)
+Background jobs / other server-side processing: Railway
+
+These three cover the infrastructure requirements for most web applications.
+
+## Why Skip Docker
+
+Docker's value is environment reproducibility and portability. When a team of multiple people needs consistent environments across development, staging, and production, Docker is a rational choice.
+
+But when you're developing solo, or the project fits entirely within managed services, many of the problems Docker solves don't exist in the first place.
+
+Container image build times, Dockerfile maintenance, docker-compose configuration, CI cache strategy — there are projects where that time is better spent on feature development.
+
+## What Each Service Does
+
+Vercel handles deployment with near-zero configuration. Push to Git, deployment runs, preview environments are created automatically. Edge Functions are available for latency optimization by geography.
+
+Supabase provides "PostgreSQL + Auth + Storage + Realtime" as a single service. Production-quality database and auth without Docker. Row Level Security handles access control at the database layer.
+
+Railway is a PaaS that runs containers, but cheaper than Heroku with less configuration. Background jobs, scheduled tasks, WebSocket servers — anything that doesn't fit Vercel's serverless model goes here.
+
+## Limitations
+
+This stack has real limits.
+
+Processing that requires custom Docker images — specific binary dependencies, GPU-based AI inference — isn't covered. Traffic at large scale pushes costs up significantly. If you want infrastructure-as-code (Terraform, etc.), that requires separate design.
+
+## Decision Criteria
+
+For early-stage startups, solo projects, and small-to-mid-scale SaaS, this stack is usually enough.
+
+The right approach isn't "Docker by default" — it's choosing based on project scale, team size, and operational cost.

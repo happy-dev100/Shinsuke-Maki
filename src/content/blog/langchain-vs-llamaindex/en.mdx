@@ -1,0 +1,36 @@
+---
+title: "LangChain vs LlamaIndex: How to Choose"
+date: "2024-11-05"
+excerpt: "Having used both frameworks in production, here's how I think about when to reach for each one."
+tags: ["AI", "LangChain", "LlamaIndex", "RAG", "Frameworks"]
+---
+
+LangChain and LlamaIndex are both frameworks for building LLM applications, but they're optimized for different things. Having used both in real projects, here's how I think about the choice.
+
+## Where LangChain Fits
+
+LangChain is built around chains, agents, and tool integrations.
+
+It's strong when you need orchestration: multi-step processing that combines LLMs, agents that dynamically call external APIs and tools, or workflows that switch between multiple models. Conversation history management and memory implementations are also well-developed. For chatbots and complex workflow automation, LangChain is the more suitable choice right now.
+
+## Where LlamaIndex Fits
+
+LlamaIndex specializes in data ingestion, index construction, and retrieval.
+
+When you need to make PDFs or internal documents searchable via RAG, LlamaIndex's data connectors and index management are genuinely easy to use. Chunking, embedding, and vector DB integration are handled through a consistent API, which keeps retrieval pipeline construction straightforward.
+
+For the use case of "load documents and answer questions about them," LlamaIndex requires less code and produces clearer intent.
+
+## Using Both Together
+
+In real products, combining the two can work well: LlamaIndex for building the index and retrieval pipeline, LangChain for agent logic.
+
+Integrating them requires care because the interfaces differ, but the result plays to each framework's strengths.
+
+## The Abstraction Problem
+
+Both frameworks hide too much of what's happening internally.
+
+APIs break with version upgrades. Errors are hard to locate. Performance bottlenecks aren't visible. These are problems I've run into in practice.
+
+For simpler use cases, calling the OpenAI API directly — without a framework — can be more maintainable in the long run. Adopting a framework should be a deliberate decision made when you can clearly say "without this, the implementation becomes genuinely complex."

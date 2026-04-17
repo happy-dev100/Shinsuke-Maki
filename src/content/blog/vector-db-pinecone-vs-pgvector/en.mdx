@@ -1,0 +1,34 @@
+---
+title: "Vector DB Selection: Pinecone or pgvector?"
+date: "2023-09-12"
+excerpt: "Criteria for choosing between Pinecone and pgvector when building a RAG system, based on running both in production."
+tags: ["AI", "RAG", "Pinecone", "pgvector", "Database"]
+---
+
+When building a RAG system, the vector DB decision needs to be made early. Changing it later means regenerating all embeddings.
+
+Having run both Pinecone and pgvector in production, here's what I've observed about each.
+
+## Pinecone
+
+As a managed service, it's polished. No infrastructure management, automatic scaling.
+
+The SDK API is clean — index creation, upsert, and query are quick to implement. Namespaces allow logical index partitioning, making tenant isolation straightforward.
+
+The downsides are cost and external data dependency. Expenses grow with vector count, and data lives outside your own infrastructure. Complex filter conditions can also slow queries down if metadata isn't designed carefully.
+
+## pgvector
+
+Running as a PostgreSQL extension means it lives in the same environment as your existing RDBMS.
+
+The main advantage is SQL joins. You can combine normal SQL with vector search: "from documents where user_id matches, retrieve the most semantically similar ones." RLS applies as well, which makes it a natural fit with Supabase.
+
+The downside is performance at scale. HNSW indexes handle several million vectors reasonably well, but it doesn't match the managed scalability of Pinecone. Infrastructure management is your responsibility.
+
+## Decision Criteria
+
+Choose pgvector if you have existing PostgreSQL infrastructure, need to keep data on your own infrastructure, or need to join against relational data.
+
+Choose Pinecone if you're starting from scratch, prioritizing scale, or want to minimize infrastructure management overhead.
+
+For projects already using Supabase, pgvector is available out of the box, which makes adding Pinecone hard to justify. Supabase's vector search is built on pgvector and integrates directly with its auth and RLS features.

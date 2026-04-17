@@ -1,0 +1,40 @@
+---
+title: "What Happened When We Migrated to Next.js App Router"
+date: "2025-06-02"
+excerpt: "A record of migrating from Pages Router to App Router on a real SaaS project — what surprised me and what I'd do again."
+tags: ["Next.js", "App Router", "React", "Full-Stack", "Migration"]
+---
+
+I migrated an existing Next.js project from Pages Router to App Router. The project was a mid-sized SaaS application with around 30 pages. The migration took two weeks. A lot of things only became clear once I was actually doing it.
+
+## What Surprised Me
+
+I knew `getServerSideProps` and `getStaticProps` were going away. The challenge came after that.
+
+I rewrote the architecture multiple times while working out where to draw the boundary between Server Components and Client Components. Components using `useState` or `useEffect` automatically become Client Components — but deciding where to put `'use client'`, and whether parent Server Components can still render them, was harder than I expected.
+
+i18n libraries like `next-intl` also required migration to App Router-compatible versions. Server Components can't use `useTranslations` — you need `getTranslations` instead. I had to check each library's App Router support status individually.
+
+## Route Handlers
+
+The `pages/api` directory becomes Route Handlers under `app/api`.
+
+The syntax shifts to working directly with `Request` and `Response` objects, which thins out the Next.js-specific wrapper. Type safety improves, but some things that were previously automatic — like parsing `req.query` — now need to be written explicitly.
+
+## Data Fetching
+
+Controlling cache behavior through `fetch` options was a genuine improvement.
+
+`{ cache: 'force-cache' }` for static, `{ cache: 'no-store' }` for dynamic, `{ next: { revalidate: 60 } }` for ISR-equivalent behavior — these can now be configured at the component level rather than only at the page level.
+
+## The Decision I'd Make Again
+
+Doing the migration incrementally was the right call.
+
+App Router and Pages Router can coexist in the same project. I started with the lowest-impact static pages, then worked through dynamic pages, auth flows, and API routes in sequence. Taking it one phase at a time made it possible to isolate problems at each step.
+
+## Conclusion
+
+Migrating to App Router isn't a simple rewrite — it's closer to an architectural redesign. Without understanding the philosophy of explicitly separating server and client responsibilities, you end up with code that works but whose design is compromised.
+
+Productivity increases once you're comfortable with it. Getting comfortable has a real cost.

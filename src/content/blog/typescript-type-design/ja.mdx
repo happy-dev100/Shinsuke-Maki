@@ -1,0 +1,56 @@
+---
+title: "TypeScriptの型設計で本当に重要なこと"
+date: "2024-08-22"
+excerpt: "型を「書く」ことよりも「設計する」ことに意識を向けると、コードの品質が変わる。実務で感じたことを書く。"
+tags: ["TypeScript", "型設計", "フルスタック", "品質"]
+---
+
+TypeScriptを使い始めた頃は、型エラーを消すことが目的になっていた。`any` を使えばエラーが消えるので、使いすぎた。今になって思うと、型設計をサボっていた時期のコードは、後から読んでも何をしているかわからない。
+
+## 型は仕様書だ
+
+型を「コンパイルを通すための記述」ではなく「仕様の表現」として書くようになってから、コードの品質が変わった。
+
+```ts
+type UserId = string;
+type OrderId = string;
+
+function getOrder(userId: UserId, orderId: OrderId) {}
+```
+
+これでもコンパイルは通るが、`UserId` と `OrderId` を間違えてもエラーにならない。
+
+```ts
+type UserId = string & { readonly _brand: 'UserId' };
+type OrderId = string & { readonly _brand: 'OrderId' };
+```
+
+Branded Typeを使えば、型レベルでの取り違えを防げる。実行時のコストはゼロで、設計の意図がコードに残る。
+
+## Union Typeでステートを表現する
+
+```ts
+type RequestState =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: User }
+  | { status: 'error'; message: string };
+```
+
+これはboolean flagの組み合わせより遥かに安全だ。`isLoading: boolean, isError: boolean, data: User | null` という設計では、`isLoading: true` かつ `data: User` という矛盾した状態が型レベルで表現できてしまう。Union Typeを使えば、存在してはいけない状態を型で排除できる。
+
+## `unknown` を `any` の代わりに使う
+
+外部APIのレスポンスや、型が確定していないデータには `unknown` を使う。
+
+`any` は型チェックを無効化するが、`unknown` は使う前にナローイングを強制する。`zod` でバリデーションしてからデータを使う習慣と組み合わせると、実行時エラーの発生源が減る。
+
+## 型の複雑さはコードの複雑さを反映する
+
+型が複雑になってきたとき、それはコード自体の設計に問題がある場合が多い。
+
+Generic地獄になってきたら、抽象化のレベルを見直す。型パズルを解くより、設計を単純にする方が長期的に正しい。
+
+## `as` の使用を記録する
+
+型アサーション（`as`）を使う場所は、後から読む人間が「なぜここでアサーションが必要なのか」を理解できるようにコメントを残す。`as` は「TypeScriptに正しさを保証してもらえない箇所」のマーカーだ。コードベース内の `as` の数は、型安全性の穴の数と比例する。

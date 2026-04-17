@@ -1,0 +1,44 @@
+---
+title: "Practical Patterns in Prompt Engineering"
+date: "2024-06-18"
+excerpt: "Not theory — a practical breakdown of prompt design patterns that hold up in real-world use."
+tags: ["AI", "Prompt Engineering", "OpenAI", "Practical"]
+---
+
+"Prompt engineering" has developed a reputation as something like searching for magic words. It isn't. It's design work aimed at getting reproducible output.
+
+## Explicit Role Assignment
+
+Giving the model a clear role stabilizes output quality.
+
+Something like "You are a senior engineer with deep expertise in TypeScript" aligns the level of detail, vocabulary, and assumed knowledge across responses. A specific, concrete role produces more consistent results than a vague one.
+
+## Few-Shot Examples
+
+Showing the model a few input-output pairs stabilizes both format and quality.
+
+Two or three examples of "given this input, return something like this" noticeably improves output compared to zero-shot prompting. This is especially effective when you need JSON output or a specific tone or writing style.
+
+## Chain of Thought
+
+For tasks requiring complex reasoning, explicitly writing "think through this step by step" improves accuracy.
+
+Asking the model to write out intermediate reasoning improves the quality of its conclusions. That said, applying this to simple tasks wastes tokens. Use it only when the reasoning is genuinely complex.
+
+## Specifying Output Format
+
+When output will be processed programmatically, specify the format strictly.
+
+Write something like: "Return a JSON object with keys: name, age, email." For additional reliability, use Structured Output (`response_format: { type: "json_object" }`) to eliminate the risk of receiving anything other than valid JSON.
+
+## Constraints
+
+Writing "do not do X" constraints in prompts has limited effectiveness.
+
+Writing "don't hallucinate" doesn't stop hallucination. Positive instructions are more reliable than negative constraints. Instead of telling the model what not to do, write what you want it to do: "If you're uncertain about information, say 'I don't know.'"
+
+## Evaluating Prompts
+
+Record how output changes when you modify a prompt.
+
+"It feels like it got better" isn't reproducible. Build test cases and make it possible to compare output before and after a change. This is the same thinking as writing tests for code.

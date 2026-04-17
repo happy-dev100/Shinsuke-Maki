@@ -1,0 +1,56 @@
+---
+title: "What Actually Matters in TypeScript Type Design"
+date: "2024-08-22"
+excerpt: "Shifting focus from writing types to designing them changes code quality in ways that compound over time."
+tags: ["TypeScript", "Type Design", "Full-Stack", "Quality"]
+---
+
+When I first started using TypeScript, the goal was to make type errors disappear. `any` made errors go away, so I used too much of it. Looking back, code from that period is hard to read even now — you can't tell what it's doing.
+
+## Types Are Specifications
+
+Code quality changed when I started writing types as "expressions of intent" rather than "things you write to get the compiler to pass."
+
+```ts
+type UserId = string;
+type OrderId = string;
+
+function getOrder(userId: UserId, orderId: OrderId) {}
+```
+
+This compiles, but swapping `UserId` and `OrderId` won't produce an error.
+
+```ts
+type UserId = string & { readonly _brand: 'UserId' };
+type OrderId = string & { readonly _brand: 'OrderId' };
+```
+
+Branded Types prevent mix-ups at the type level. Zero runtime cost, and the design intent stays in the code.
+
+## Representing State with Union Types
+
+```ts
+type RequestState =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: User }
+  | { status: 'error'; message: string };
+```
+
+This is far safer than combining boolean flags. With `isLoading: boolean, isError: boolean, data: User | null`, a contradictory state like `isLoading: true` alongside `data: User` is representable at the type level. Union Types eliminate states that shouldn't exist.
+
+## Use `unknown` Instead of `any`
+
+For external API responses or data with uncertain types, use `unknown`.
+
+`any` disables type checking. `unknown` forces narrowing before use. Combined with a habit of validating through `zod` before consuming data, the sources of runtime errors decrease.
+
+## Type Complexity Reflects Code Complexity
+
+When types start getting complicated, it usually means the design of the code itself has a problem.
+
+If you're in Generic hell, reconsider the level of abstraction. Simplifying the design beats solving a type puzzle for long-term maintainability.
+
+## Track Your Uses of `as`
+
+When using type assertions (`as`), leave a comment that helps future readers understand why an assertion was necessary here. `as` is a marker for "a place where TypeScript cannot guarantee correctness." The number of `as` usages in a codebase is proportional to the number of holes in its type safety.

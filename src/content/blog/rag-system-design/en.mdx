@@ -1,0 +1,46 @@
+---
+title: "How to Avoid Failures When Designing RAG Systems"
+date: "2025-08-14"
+excerpt: "A practical breakdown of the design decisions you must face before bringing a RAG system into production."
+tags: ["AI", "RAG", "LangChain", "Pinecone", "Architecture"]
+---
+
+You hear a lot of stories about people "building a RAG system." You rarely hear about one that runs stably in production.
+
+The difference is almost always decided at the design stage.
+
+## Chunk Size
+
+How you split documents directly affects retrieval accuracy.
+
+Too small, and you lose context. Too large, and noise increases. The 512–1024 token range is a reasonable starting point, but it needs to change based on the nature of the documents.
+
+Bullet-pointed lists and step-by-step guides benefit from smaller chunks. Legal documents and technical specifications, where context flows continuously, work better with larger ones. Don't hardcode a fixed value — adjust it while observing actual retrieval results.
+
+## Embedding Model Selection
+
+A lot of projects default to `text-embedding-ada-002` without much thought. If your content includes Japanese, that deserves more consideration.
+
+OpenAI's models handle Japanese reasonably, but comparing against multilingual-specialized models like `multilingual-e5-large` or `intfloat/multilingual-e5-base` is worth doing first. Swapping models after launch means regenerating all existing vectors. The initial selection has a large downstream impact.
+
+## Choosing a Vector DB
+
+Pinecone is managed and low-maintenance. pgvector works as an extension of PostgreSQL, letting you handle data within the same transactions as your existing DB.
+
+For a standalone RAG system, Pinecone is practical. When you need tight integration with an existing RDBMS, pgvector makes more sense. Either way, wrapping the interface means switching later isn't prohibitively difficult.
+
+## Adding a Reranker
+
+Vector search retrieves things that are "semantically close." That doesn't mean they're "precisely correct as an answer."
+
+Fetching the top 10 results and then applying a cross-encoder reranker improves accuracy meaningfully. A lightweight model like `cross-encoder/ms-marco-MiniLM-L-6-v2` works well enough for most cases.
+
+Whether to include it depends on the cost-quality tradeoff, but for quality-sensitive applications it's a step worth taking.
+
+## Build an Evaluation Pipeline from the Start
+
+The thing most commonly skipped in RAG projects is evaluation.
+
+Don't stop at "the answers feel pretty good." Build a Ground Truth Q&A set and measure Recall, Precision, and Faithfulness quantitatively. Frameworks like RAGAS make this automatable.
+
+Without the ability to track how a tuning change affected accuracy with numbers, improvement stays guesswork. Build the evaluation pipeline from day one.

@@ -1,0 +1,52 @@
+---
+title: "Integrating AI Code Review into CI"
+date: "2024-01-30"
+excerpt: "A record of integrating LLM-based code review into GitHub Actions — what worked, and what didn't."
+tags: ["AI", "CI/CD", "GitHub Actions", "Code Review", "Automation"]
+---
+
+I've been running experiments with delegating parts of code review to AI in real projects. The short version: there's a clear line between what works and what doesn't.
+
+## The Setup
+
+A GitHub Actions workflow triggers on PRs, fetches the diff, passes it to the OpenAI API, and posts the returned review as a PR comment. That's the whole thing.
+
+```yaml
+on:
+  pull_request:
+    types: [opened, synchronize]
+```
+
+The diff is fetched with git's `--unified=0` option to capture only the changed sections and keep token usage down. Files are processed individually, and files that are too large get skipped.
+
+## What Worked
+
+Detection of obvious mistakes is accurate.
+
+- Missing `await`
+- Unguarded null access
+- Leftover `console.log` calls
+- Inconsistent variable naming
+- Missing type annotations
+
+These are caught faster than a human reviewer would catch them, and nothing gets missed. There are cases where it picks up things that simple rule-based linting doesn't catch.
+
+## What Didn't Work
+
+Design-level feedback isn't reliable.
+
+Judgments like "this architecture won't scale" or "this data structure doesn't fit the requirements" can't be made by looking only at a diff. Without sufficient context, the model produces plausible-sounding feedback that isn't grounded in the actual situation.
+
+Validating business logic correctness falls into the same category.
+
+## Living with Noise
+
+AI review always produces noise. Irrelevant comments, misaligned feedback, duplicated observations — these will appear.
+
+Whether the noise is tolerable depends on the team and project. Treating it as "a useful reference" works fine. Requiring responses to every comment will slow development down.
+
+## How I Use It Now
+
+I treat it as a pre-check before a human reviewer sees the PR.
+
+By having AI eliminate obvious mistakes first, the human reviewer can focus on design, logic, and quality. Positioning AI as "preprocessing for the reviewer" rather than "a replacement for the reviewer" is, for now, the right mental model.

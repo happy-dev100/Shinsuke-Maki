@@ -1,0 +1,46 @@
+---
+title: "What to Think About When Building Automation Tools with the OpenAI API"
+date: "2025-03-20"
+excerpt: "Why AI-powered automation tools stop being used — and how to design them so they actually stick in production."
+tags: ["AI", "OpenAI", "Automation", "Backend"]
+---
+
+Calling the OpenAI API makes it feel like anything can be automated. Simple things work quickly. The challenge starts after "it works."
+
+## Why Tools Stop Being Used
+
+Automation tools that get abandoned in the field usually fail for one of these reasons.
+
+Output is unstable and can't be trusted. Processing is slow and frustrating. When errors occur, nobody knows what's happening. Costs are unpredictable.
+
+None of these problems are visible right after the first API call.
+
+## Managing Prompts
+
+Don't hardcode prompts into the application code beyond the initial prototype.
+
+Every change requires a deployment, and versioning becomes impossible. Manage prompts in a database or configuration files, and tie them to output logs. Without the ability to trace which prompt produced which output, improvement cycles stall.
+
+## Validating Output
+
+Never pass LLM output directly into business logic.
+
+You expect JSON, but natural language slips in. The specified format gets ignored. This happens regularly. Use schema validation with `zod` or `pydantic`, and build in retry logic or a fallback path from the start when validation fails.
+
+## Async Processing and Queues
+
+LLM responses are slow. GPT-4-class models take several seconds; heavier workloads take longer.
+
+Designing for synchronous waiting hurts both UX and server resources. Put a queue like BullMQ or Cloud Tasks between the request and the response, and return results via webhook or polling. Show users an explicit "processing" state while they wait.
+
+## Cost Management
+
+Measure token usage per request and record it to a database.
+
+Without the ability to aggregate costs by month, by user, and by feature, you'll be slow to catch budget overruns. Build in limits and alerts from the beginning. "We'll figure it out after we see how it's used" is a dangerous approach.
+
+## Logging and Monitoring
+
+Log every request: input, output, latency, errors, and token count.
+
+When something behaves unexpectedly in production, you can't diagnose it without logs. Use a dedicated tool like LangSmith, or build your own log table — either works, but the records are non-negotiable.
