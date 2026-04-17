@@ -85,6 +85,7 @@ export function HeroSection({
           variants={fadeUp}
           initial="hidden"
           animate="visible"
+          style={{ overflow: 'visible' }}
         >
           <HeroShape />
         </motion.div>
