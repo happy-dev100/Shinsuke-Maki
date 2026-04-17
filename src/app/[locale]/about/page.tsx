@@ -1,11 +1,11 @@
 import { useTranslations, useLocale } from 'next-intl';
-import Image from 'next/image';
 import { MapPin, BriefcaseBusiness, Activity } from 'lucide-react';
 import { personal } from '@/data/personal';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { AnimateList, AnimateItem } from '@/components/ui/AnimateList';
 import { fadeLeft } from '@/lib/animations';
+import { HeroShapeClient } from '@/components/sections/HeroShapeClient';
 
 export default function AboutPage() {
   const t = useTranslations('about');
@@ -88,17 +88,9 @@ export default function AboutPage() {
 
         {/* Sidebar */}
         <aside className="space-y-6">
-          {/* Photo */}
+          {/* 3D Shape */}
           <AnimateIn variants={fadeLeft} delay={0.1}>
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800">
-              <Image
-                src="/i.jpg"
-                alt={personal.name[locale]}
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
+            <HeroShapeClient />
           </AnimateIn>
 
           <AnimateIn variants={fadeLeft} delay={0.2}>
