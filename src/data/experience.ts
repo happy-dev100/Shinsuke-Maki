@@ -16,7 +16,7 @@ export const experiences: Experience[] = [
       en: 'Freelance Full-Stack Engineer & AI Specialist',
       ja: 'フリーランス フルスタックエンジニア & AIスペシャリスト',
     },
-    period: { start: '2026-02', end: null },
+    period: { start: '2025-10', end: null },
     description: {
       en: 'Independent freelance engineer specializing in full-stack web development and AI integration. Working with clients across Japan and internationally to deliver high-impact solutions solo — with the productivity of a full team.',
       ja: 'フルスタックWeb開発とAI統合を専門とするフリーランスエンジニア。国内外のクライアントと直接連携し、チームに匹敵する生産性で高品質なソリューションを一人で提供。',
@@ -45,7 +45,7 @@ export const experiences: Experience[] = [
       en: 'Lead Full-Stack Engineer',
       ja: 'リードフルスタックエンジニア',
     },
-    period: { start: '2022-04', end: '2024-03' },
+    period: { start: '2022-04', end: '2025-09' },
     description: {
       en: 'Lead engineer responsible for frontend architecture, API design, and mentoring junior engineers on a large-scale SaaS product.',
       ja: '大規模SaaSプロダクトのリードエンジニアとして、フロントエンドアーキテクチャの設計、API開発、ジュニアエンジニアのメンタリングを担当。',
