@@ -103,7 +103,7 @@ export const experiences: Experience[] = [
       en: 'Web Developer',
       ja: 'Webデベロッパー',
     },
-    period: { start: '2015-04', end: '2019-06' },
+    period: { start: '2017-03', end: '2019-06' },
     description: {
       en: 'Joined as a junior developer at a Nara-based web development company. Built practical skills across the full stack through hands-on delivery of corporate websites and business applications for local and regional clients.',
       ja: '奈良市内のWeb制作会社にジュニアとして入社。地域・全国のクライアント向けにコーポレートサイトや業務アプリを実際に納品しながら、フルスタックのスキルを実践的に習得。',
