@@ -30,7 +30,7 @@ export const projects: Project[] = [
       en: 'The biggest challenge was executing a large-scale architectural overhaul without service downtime, as the platform operates 24/7. We employed a strangler fig migration pattern, incrementally replacing legacy components while maintaining backward compatibility. Ensuring real-time messaging reliability across thousands of concurrent users also required careful WebSocket architecture design.',
       ja: '24時間365日稼働するサービスをダウンタイムなしで大規模刷新することが最大の課題でした。ストラングラーフィグパターンを採用し、後方互換性を保ちながらレガシーコンポーネントを段階的に置き換えていきました。数千の同時接続ユーザーを抱えるリアルタイムメッセージングの信頼性確保にも、WebSocketアーキテクチャの慎重な設計が必要でした。',
     },
-    duration: { en: 'February 2020 – March 2021', ja: '2020年2月〜2021年3月' },
+    duration: { en: '13 months', ja: '13ヶ月' },
     teamSize: { en: '5 engineers', ja: '5名' },
     myRole: {
       en: 'Worked across the full stack in a cross-functional role — contributed to frontend UI development, backend API implementation, real-time messaging features, and QA. Handled diverse tasks across multiple areas of the platform throughout the redevelopment cycle.',
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       ja: '最大の課題は、多数の外部API（航空会社、GDS、ホテルチェーン）からリアルタイム在庫・価格を集約する統合予約エンジンの構築でした。非同期集約レイヤーとフォールバック戦略、キャッシュ層を実装し、ピーク時でも検索レスポンスを2秒以内に維持することを実現しました。',
     },
     technologies: ['TypeScript', 'React', 'Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'AWS', 'Docker'],
-    duration: { en: 'April 2022 – March 2024', ja: '2022年4月〜2024年3月' },
+    duration: { en: '24 months', ja: '24ヶ月' },
     teamSize: { en: '8 engineers (3 frontend, 3 backend, 2 infrastructure)', ja: '8名（フロントエンド3名、バックエンド3名、インフラ2名）' },
     myRole: {
       en: 'As a full-stack lead engineer, I was responsible for the frontend architecture using React/Next.js, design and implementation of the booking aggregation API, and performance tuning. I also led code reviews, onboarded junior engineers, and drove the migration from a legacy jQuery codebase to a modern React stack.',
