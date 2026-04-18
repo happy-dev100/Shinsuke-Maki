@@ -42,6 +42,30 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: 'purchase-management-system',
+    title: '買取・在庫・売上管理システム',
+    description: {
+      en: 'An integrated web system for a recycling/resale business covering the full operational cycle — purchase intake, inventory tracking, and sales analytics — built from requirements to release.',
+      ja: 'リユース事業者向けの統合業務システム。買取受付から在庫管理、売上分析ダッシュボードまでの業務フローをワンストップで管理。要件定義からリリースまで一貫して担当。',
+    },
+    overview: {
+      en: 'A custom-built integrated management system designed to replace fragmented spreadsheet-based workflows. The system enables staff to process purchase intake through a streamlined UI, tracks inventory in real time across the floor, and provides management with a dashboard for sales performance and profit margin analysis. Delivered across all phases from requirements gathering through production release.',
+      ja: 'バラバラなスプレッドシート管理を一元化するために開発した統合業務システム。スタッフが直感的に操作できる買取受付UI、リアルタイムで在庫状況を把握できる管理画面、管理者向けの売上・粗利分析ダッシュボードを搭載。要件定義・設計・開発・テスト・リリースまで全工程を一人で担当した。',
+    },
+    challenges: {
+      en: 'The main challenge was modeling the purchase and inventory lifecycle accurately in the database. Each purchased item needs to be tracked individually through intake, assessment, pricing, shelving, sale, and disposal — all while maintaining accurate stock counts and cost basis for margin calculations. Careful schema design and transaction management were essential to ensure data consistency across concurrent operations.',
+      ja: '最大の課題は、買取から販売までの在庫ライフサイクルをデータベース上で正確にモデリングすることでした。買取受付・査定・値付け・陳列・販売・廃棄の各ステータスを単品ごとに追跡しながら、正確な在庫数と原価を維持する必要がありました。並行操作でもデータ整合性を保つために、スキーマ設計とトランザクション管理を慎重に設計しました。',
+    },
+    duration: { en: '3 months', ja: '3ヶ月' },
+    teamSize: { en: '1 engineer (solo)', ja: '1名（単独）' },
+    myRole: {
+      en: 'Sole engineer. Handled all phases independently: requirements gathering with the client, system design, frontend and backend implementation, testing, and production deployment.',
+      ja: '担当エンジニア1名。クライアントとの要件定義から、システム設計、フロントエンド・バックエンド実装、テスト、本番リリースまで全工程を単独で担当。',
+    },
+    technologies: ['TypeScript', 'React', 'Next.js', 'PHP', 'MySQL', 'Tailwind CSS'],
+    featured: false,
+  },
+  {
     slug: 'pikapaka-btm',
     title: 'ピカパカ出張DX',
     description: {
