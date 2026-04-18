@@ -42,6 +42,32 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: 'moov-pos',
+    title: 'MOOV リユース特化型クラウドPOS',
+    description: {
+      en: 'Feature development and API integration for MOOV, a cloud-based POS system specialized for resale and reuse businesses, with 1,500+ stores nationwide.',
+      ja: '全国1,500店舗以上に導入されているリユース特化型クラウドPOSシステム「MOOV」の追加機能開発およびAPI連携を担当。',
+    },
+    overview: {
+      en: 'MOOV is a cloud POS system built exclusively for the reuse and resale industry, covering purchase intake, inventory management, sales, and EC integration in a single platform. The project involved implementing additional features and external API integrations to extend the system\'s capabilities — including data linkage with external resale platforms and enhancements to the purchase intake and inventory tracking workflows.',
+      ja: 'MOOVはリユース・リサイクル業に特化したクラウドPOSシステムで、買取・在庫管理・販売・EC連動を一元化するプラットフォームです。外部リユースプラットフォームとのデータ連携、買取受付フローの機能拡張、在庫トラッキングの改善など、追加機能開発とAPI連携の実装を担当しました。',
+    },
+    challenges: {
+      en: 'The primary challenge was integrating with multiple external data sources — resale price APIs, EC platform inventory feeds, and payment terminal protocols — while preserving the stability of an already-running production system used daily across hundreds of stores. Careful API versioning and backward-compatible changes were essential throughout.',
+      ja: '稼働中の本番システムの安定性を保ちながら、相場データAPI・ECプラットフォーム在庫フィード・決済端末プロトコルなど複数の外部データソースとの連携を実装することが最大の課題でした。数百店舗が日常的に使用するシステムへの変更のため、APIバージョン管理と後方互換性の確保を徹底しました。',
+    },
+    duration: { en: '4 months', ja: '4ヶ月' },
+    teamSize: { en: '1 engineer (solo)', ja: '1名（単独）' },
+    myRole: {
+      en: 'Sole engineer responsible for requirements gathering, API design and implementation, integration testing, and production deployment of new features.',
+      ja: '要件定義・API設計と実装・結合テスト・本番デプロイまで単独で担当。',
+    },
+    technologies: ['TypeScript', 'React', 'Node.js', 'REST API', 'PostgreSQL', 'Docker'],
+    demo: 'http://moov.jp/',
+    image: '/moov.png',
+    featured: false,
+  },
+  {
     slug: 'purchase-management-system',
     title: '買取・在庫・売上管理システム',
     description: {
