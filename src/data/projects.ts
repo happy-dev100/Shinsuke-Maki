@@ -64,6 +64,7 @@ export const projects: Project[] = [
     },
     technologies: ['TypeScript', 'React', 'Next.js', 'PHP', 'MySQL', 'Tailwind CSS'],
     demo: 'https://www.talos-web.com/solutions/recycle/',
+    image: '/talos.png',
     featured: false,
   },
   {
