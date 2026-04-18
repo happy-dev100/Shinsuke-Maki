@@ -63,6 +63,7 @@ export const projects: Project[] = [
       ja: '担当エンジニア1名。クライアントとの要件定義から、システム設計、フロントエンド・バックエンド実装、テスト、本番リリースまで全工程を単独で担当。',
     },
     technologies: ['TypeScript', 'React', 'Next.js', 'PHP', 'MySQL', 'Tailwind CSS'],
+    demo: 'https://www.talos-web.com/solutions/recycle/',
     featured: false,
   },
   {
