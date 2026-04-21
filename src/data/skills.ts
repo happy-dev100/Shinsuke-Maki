@@ -24,7 +24,7 @@ export const skillCategories: SkillCategory[] = [
   {
     key: 'backend',
     skills: [
-      { name: 'Node.js', level: 92, years: 8 },
+      { name: 'Node.js', level: 92, years: 7 },
       { name: 'NestJS', level: 85, years: 4 },
       { name: 'Express', level: 90, years: 7 },
       { name: 'GraphQL', level: 82, years: 4 },
