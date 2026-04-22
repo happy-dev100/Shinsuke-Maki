@@ -65,7 +65,7 @@ export const projects: Project[] = [
     technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe', 'NextAuth.js', 'Resend', 'AWS', 'Tailwind CSS'],
     demo: 'https://edisone.jp/',
     image: '/edisone.png',
-    featured: false,
+    featured: true,
   },
   {
     slug: 'moov-pos',
