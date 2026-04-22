@@ -42,6 +42,30 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: 'reservation-management-system',
+    title: '店舗向け予約管理システム',
+    description: {
+      en: 'A full-stack reservation management web application for retail and service businesses — covering booking, payments, customer management, and an admin dashboard — built from requirements to production.',
+      ja: '飲食・美容・施設など店舗向けのWeb予約管理システム。予約受付・オンライン決済・顧客管理・管理者ダッシュボードを一括搭載。要件定義から本番デプロイまで単独で担当。',
+    },
+    overview: {
+      en: 'A SaaS-style reservation platform built for service businesses. Users can register via email or social login, make and manage reservations, and complete payments online. Store owners get a dedicated admin dashboard with reservation management, customer records, and sales reporting. Email notifications handle booking confirmations and reminders automatically.',
+      ja: 'サービス業向けのSaaS型予約プラットフォーム。ユーザーはメールまたはSNSログインで登録し、予約・変更・キャンセルをセルフで操作できます。店舗側は管理画面から予約一覧・顧客管理・売上確認を一元管理。予約確認メールとリマインド通知は自動送信に対応しています。',
+    },
+    challenges: {
+      en: 'The core challenge was building a reliable booking engine that prevents double-booking across concurrent requests while keeping the UI responsive. Implementing Stripe\'s webhook-based payment confirmation flow — ensuring payment status and reservation status stay in sync even when network interruptions occur — required careful idempotency handling and state machine design for the reservation lifecycle.',
+      ja: '同時リクエストでの二重予約を防ぎながらUIのレスポンスを維持する予約エンジンの設計が最大の課題でした。StripeのWebhookベースの決済確認フローでは、ネットワーク断絶が発生しても決済状態と予約状態が同期されるよう、冪等性の担保と予約ライフサイクルのステートマシン設計を慎重に実装しました。',
+    },
+    duration: { en: '2 months', ja: '2ヶ月' },
+    teamSize: { en: '1 engineer (solo)', ja: '1名（単独）' },
+    myRole: {
+      en: 'Sole engineer. Handled all phases: requirements definition, system design, frontend and backend implementation, Stripe integration, email notification setup, and production deployment on Vercel.',
+      ja: '要件定義・システム設計・フロントエンド・バックエンド実装・Stripe連携・メール通知設定・Vercel本番デプロイまで全工程を単独で担当。',
+    },
+    technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe', 'NextAuth.js', 'Resend', 'Vercel', 'Tailwind CSS'],
+    featured: false,
+  },
+  {
     slug: 'moov-pos',
     title: 'MOOV リユース特化型クラウドPOS',
     description: {
