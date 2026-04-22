@@ -63,6 +63,7 @@ export const projects: Project[] = [
       ja: '要件定義・システム設計・フロントエンド・バックエンド実装・Stripe連携・メール通知設定・Vercel本番デプロイまで全工程を単独で担当。',
     },
     technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe', 'NextAuth.js', 'Resend', 'Vercel', 'Tailwind CSS'],
+    image: '/edisone.png',
     featured: false,
   },
   {
