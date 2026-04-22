@@ -63,6 +63,7 @@ export const projects: Project[] = [
       ja: '要件定義・システム設計・フロントエンド・バックエンド実装・Stripe連携・メール通知設定を担当。インフラはAWS上で別メンバーが担当。',
     },
     technologies: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Stripe', 'NextAuth.js', 'Resend', 'AWS', 'Tailwind CSS'],
+    demo: 'https://edisone.jp/',
     image: '/edisone.png',
     featured: false,
   },
