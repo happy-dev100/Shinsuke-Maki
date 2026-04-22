@@ -56,8 +56,8 @@ export const projects: Project[] = [
       en: 'The core challenge was building a reliable booking engine that prevents double-booking across concurrent requests while keeping the UI responsive. Implementing Stripe\'s webhook-based payment confirmation flow — ensuring payment status and reservation status stay in sync even when network interruptions occur — required careful idempotency handling and state machine design for the reservation lifecycle.',
       ja: '同時リクエストでの二重予約を防ぎながらUIのレスポンスを維持する予約エンジンの設計が最大の課題でした。StripeのWebhookベースの決済確認フローでは、ネットワーク断絶が発生しても決済状態と予約状態が同期されるよう、冪等性の担保と予約ライフサイクルのステートマシン設計を慎重に実装しました。',
     },
-    duration: { en: '2 months', ja: '2ヶ月' },
-    teamSize: { en: '1 engineer (solo)', ja: '1名（単独）' },
+    duration: { en: '2 months', ja: '3ヶ月' },
+    teamSize: { en: '1 engineer (solo)', ja: '4名' },
     myRole: {
       en: 'Sole engineer. Handled all phases: requirements definition, system design, frontend and backend implementation, Stripe integration, email notification setup, and production deployment on Vercel.',
       ja: '要件定義・システム設計・フロントエンド・バックエンド実装・Stripe連携・メール通知設定・Vercel本番デプロイまで全工程を単独で担当。',
