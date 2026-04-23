@@ -42,6 +42,32 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: 'another-ai',
+    title: 'ANOTHER AI — AIストレス・ヘルスチェックサービス',
+    description: {
+      en: 'Web application development for ANOTHER AI, an AI-powered mental and physical health assessment service that analyzes stress and health condition through facial video and voice analysis.',
+      ja: '顔映像と音声解析で心身状態を可視化するAIヘルスケアサービス「ANOTHER AI」のWebアプリケーション開発を担当。2025年のストレスチェック義務化拡大に対応したSaaSプラットフォーム。',
+    },
+    overview: {
+      en: 'ANOTHER AI is a SaaS platform that measures employee stress and health conditions using two AI engines: Video Analytics (facial video analysis for pulse, heart rate, blood pressure) and Voice Analytics (speech prosody analysis for mental state). The service targets companies seeking to comply with Japan\'s 2025 stress check mandate while also reducing turnover through early detection of at-risk employees.',
+      ja: 'ANOTHER AIは、ビデオアナリティクス（顔映像から脈拍・心拍・血圧を非接触測定）とボイスアナリティクス（音声の韻律分析でメンタル状態を可視化）の2つのAIエンジンで従業員の健康状態を把握するSaaSプラットフォームです。2025年の労働安全衛生法改正によるストレスチェック義務化拡大への対応と、離職防止・早期ケアを目的として開発されました。',
+    },
+    challenges: {
+      en: 'The primary technical challenge was implementing real-time video and audio capture in the browser while maintaining measurement accuracy across different devices and lighting conditions. Ensuring privacy compliance — facial and voice data must be discarded immediately after analysis, never persisted — required careful architecture design for the data processing pipeline. Integrating the AI measurement results into a clean, non-technical dashboard that HR managers could act on without data science expertise was also a significant UX challenge.',
+      ja: 'ブラウザ上でリアルタイムの映像・音声キャプチャを実装しながら、デバイスや照明条件の違いによる測定精度のばらつきを抑えることが技術的な最大の課題でした。プライバシー保護の観点から、顔映像・音声データは分析完了後に即時破棄する設計を徹底し、データ処理パイプラインを慎重に設計しました。また、AIの測定結果を人事担当者がデータサイエンスの知識なしに活用できるダッシュボードへ落とし込むUX設計にも注力しました。',
+    },
+    duration: { en: '4 months', ja: '4ヶ月' },
+    teamSize: { en: '3 engineers', ja: '3名' },
+    myRole: {
+      en: 'Responsible for frontend implementation including real-time camera/audio capture UI, measurement flow, results dashboard, and admin management screen. Also handled API integration between the AI analysis engine and the web application layer.',
+      ja: 'リアルタイムカメラ・音声キャプチャUIと測定フロー、結果ダッシュボード、管理者画面のフロントエンド実装を担当。AIエンジンとWebアプリケーション層のAPI連携も担当。',
+    },
+    technologies: ['React', 'TypeScript', 'Next.js', 'WebRTC', 'Node.js', 'PostgreSQL', 'AWS', 'Tailwind CSS'],
+    demo: 'https://www.another-ai.jp/',
+    image: '/another.png',
+    featured: false,
+  },
+  {
     slug: 'reservation-management-system',
     title: '店舗向け予約管理システム',
     description: {
