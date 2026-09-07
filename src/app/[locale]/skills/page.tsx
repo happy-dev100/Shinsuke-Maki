@@ -7,11 +7,11 @@ export default function SkillsPage() {
   const t = useTranslations('skills');
 
   const categoryLabels: Record<string, string> = {
+    ai: t('ai'),
     frontend: t('frontend'),
     backend: t('backend'),
     database: t('database'),
     cloud_devops: t('cloud_devops'),
-    tools: t('tools'),
   };
 
   return (

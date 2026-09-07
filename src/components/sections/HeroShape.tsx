@@ -5,6 +5,15 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
+function createSeededRandom(seed: number) {
+  let value = seed % 2147483647;
+  if (value <= 0) value += 2147483646;
+  return () => {
+    value = (value * 16807) % 2147483647;
+    return (value - 1) / 2147483646;
+  };
+}
+
 /* ── Neural nodes orbiting the core ── */
 function NeuralNode({ radius, speed, offset, size }: {
   radius: number; speed: number; offset: number; size: number;
@@ -152,11 +161,12 @@ function AICore() {
 function Particles({ count = 120 }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
+    const random = createSeededRandom(count * 997);
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 1.8 + Math.random() * 1.2;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
+      const r = 1.8 + random() * 1.2;
+      const theta = random() * Math.PI * 2;
+      const phi = Math.acos(2 * random() - 1);
       arr[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta);
       arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       arr[i * 3 + 2] = r * Math.cos(phi);

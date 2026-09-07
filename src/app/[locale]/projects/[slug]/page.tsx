@@ -35,7 +35,7 @@ export default async function ProjectDetailPage({
       <div className="mb-10">
         <div className="flex items-start justify-between gap-4 mb-4">
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
-            {project.title}
+            {project.title[l]}
           </h1>
           <div className="flex items-center gap-3 mt-1 flex-shrink-0">
             {project.demo && project.demo !== '/' && (
@@ -60,7 +60,7 @@ export default async function ProjectDetailPage({
         <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 mb-10">
           <Image
             src={project.image}
-            alt={project.title}
+            alt={project.title[l]}
             fill
             className="object-cover object-top"
             sizes="(max-width: 768px) 100vw, 768px"

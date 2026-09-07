@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { LogoMark } from './LogoMark';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { personal } from '@/data/personal';
 
 const navLinks = [
   { href: '/', key: 'home' },
@@ -21,9 +20,11 @@ const navLinks = [
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   if (!mounted) return <div className="w-8 h-8" />;
 
@@ -40,11 +41,8 @@ function ThemeToggle() {
 
 export function Header() {
   const t = useTranslations('nav');
-  const locale = useLocale();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const name = personal.name[locale as 'en' | 'ja'];
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-sm border-b border-neutral-200 dark:border-neutral-800">

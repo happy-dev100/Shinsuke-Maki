@@ -10,7 +10,7 @@ interface AnimateListProps {
   itemVariants?: Variants;
 }
 
-export function AnimateList({ children, className, itemVariants = fadeUp }: AnimateListProps) {
+export function AnimateList({ children, className }: AnimateListProps) {
   return (
     <motion.div
       initial="hidden"

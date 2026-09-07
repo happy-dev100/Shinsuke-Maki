@@ -15,13 +15,12 @@ import { fadeIn } from '@/lib/animations';
 
 export default function HomePage() {
   const t = useTranslations('home');
-  const tNav = useTranslations('nav');
   const tProjects = useTranslations('projects');
   const locale = useLocale() as 'en' | 'ja';
 
   const name = personal.name[locale];
   const title = personal.title[locale];
-  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+  const featuredProjects = projects.filter((p) => p.featured);
   const recentPosts = getAllBlogPosts(locale).slice(0, 3);
   const aiSkills = skillCategories.find((c) => c.key === 'ai')?.skills ?? [];
   const coreSkills = skillCategories

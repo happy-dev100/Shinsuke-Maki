@@ -85,7 +85,7 @@ export default function ExperiencePage() {
                         <div className="relative aspect-video w-full bg-neutral-100 dark:bg-neutral-900">
                           <Image
                             src={exp.logo}
-                            alt={exp.company}
+                            alt={exp.company[locale]}
                             fill
                             className="object-cover"
                             sizes="208px"
@@ -100,14 +100,14 @@ export default function ExperiencePage() {
                             className="text-5xl font-bold select-none"
                             style={{ color: 'rgba(255,255,255,0.15)' }}
                           >
-                            {exp.company.charAt(0)}
+                            {exp.company[locale].charAt(0)}
                           </span>
                         </div>
                       )}
 
                       <div className="px-4 py-3 bg-white dark:bg-neutral-900">
                         <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100 truncate">
-                          {exp.company}
+                          {exp.company[locale]}
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
                           {formatPeriod(exp.period.start, exp.period.end, t('present'))}
@@ -123,7 +123,7 @@ export default function ExperiencePage() {
                     <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                       {exp.role[locale]}
                     </h2>
-                    <div className="flex items-center gap-2 mt-0.5">
+                    <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                       {exp.companyUrl ? (
                         <a
                           href={exp.companyUrl}
@@ -131,11 +131,16 @@ export default function ExperiencePage() {
                           rel="noopener noreferrer"
                           className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
                         >
-                          {exp.company} ↗
+                          {exp.company[locale]} ↗
                         </a>
                       ) : (
                         <span className="text-neutral-600 dark:text-neutral-400">
-                          {exp.company}
+                          {exp.company[locale]}
+                        </span>
+                      )}
+                      {exp.location && (
+                        <span className="text-neutral-400 dark:text-neutral-500 text-sm">
+                          · {exp.location[locale]}
                         </span>
                       )}
                     </div>

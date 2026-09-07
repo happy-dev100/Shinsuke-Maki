@@ -1,5 +1,5 @@
 import { useTranslations, useLocale } from 'next-intl';
-import { MapPin, BriefcaseBusiness, Activity } from 'lucide-react';
+import { MapPin, BriefcaseBusiness, Activity, GraduationCap, Languages, Download, Mail, Phone } from 'lucide-react';
 import { personal } from '@/data/personal';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { AnimateIn } from '@/components/ui/AnimateIn';
@@ -18,6 +18,11 @@ export default function AboutPage() {
     { title: t('value_learning_title'), desc: t('value_learning_desc') },
   ];
 
+  const educationPeriod =
+    locale === 'ja'
+      ? '2001年4月 — 2005年3月'
+      : 'Apr 2001 — Mar 2005';
+
   const stats = [
     {
       icon: <BriefcaseBusiness size={16} />,
@@ -30,9 +35,30 @@ export default function AboutPage() {
       value: personal.location[locale],
     },
     {
+      icon: <GraduationCap size={16} />,
+      label: t('education_label'),
+      value: `${personal.education.school[locale]} / ${personal.education.field[locale]}`,
+      detail: educationPeriod,
+    },
+    {
+      icon: <Languages size={16} />,
+      label: t('languages_label'),
+      value: personal.languages[locale],
+    },
+    {
       icon: <Activity size={16} />,
       label: t('availability_label'),
       value: t('availability'),
+    },
+    {
+      icon: <Mail size={16} />,
+      label: 'Email',
+      value: personal.email,
+    },
+    {
+      icon: <Phone size={16} />,
+      label: locale === 'ja' ? '電話' : 'Phone',
+      value: personal.phone,
     },
   ];
 
@@ -104,8 +130,21 @@ export default function AboutPage() {
                   <p className="text-neutral-900 dark:text-neutral-100 font-medium">
                     {s.value}
                   </p>
+                  {'detail' in s && s.detail && (
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                      {s.detail}
+                    </p>
+                  )}
                 </div>
               ))}
+              <a
+                href={personal.cvUrl}
+                download
+                className="inline-flex items-center gap-2 text-sm font-medium text-neutral-900 dark:text-neutral-100 hover:opacity-70 transition-opacity pt-1"
+              >
+                <Download size={16} />
+                {t('download_cv')}
+              </a>
             </div>
           </AnimateIn>
 
