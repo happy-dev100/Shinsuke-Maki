@@ -25,7 +25,11 @@
     "view_all_skills": "全スキルを見る",
     "ai_section": "AIスタック",
     "recent_posts": "最近の投稿",
-    "view_all_posts": "全記事を見る"
+    "view_all_posts": "全記事を見る",
+    "resume_title": "履歴書",
+    "resume_subtitle": "職歴・プロジェクト・技術背景をまとめたPDFをダウンロードできます。",
+    "resume_download": "履歴書をダウンロード",
+    "resume_format": "PDF · 英語"
   },
   "about": {
     "page_title": "プロフィール",

@@ -58,6 +58,42 @@ body {
   animation: heroImageIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
 }
 
+.hero-ai-orb {
+  isolation: isolate;
+}
+
+.hero-ai-disk {
+  position: absolute;
+  inset: 8%;
+  border-radius: 28px;
+  background:
+    linear-gradient(160deg, #042f2e 0%, #020617 55%, #111827 100%);
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.35),
+    inset 0 0 0 1px rgba(251, 191, 36, 0.12),
+    0 0 36px rgba(20, 184, 166, 0.2),
+    0 18px 40px rgba(15, 23, 42, 0.28);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-ai-glow {
+  position: absolute;
+  inset: 2%;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(20, 184, 166, 0.28) 0%, rgba(245, 158, 11, 0.1) 42%, transparent 70%);
+  filter: blur(22px);
+  pointer-events: none;
+  z-index: 0;
+  animation: heroAiPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes heroAiPulse {
+  0%, 100% { opacity: 0.7; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
 /* Prose styles for MDX content */
 .prose {
   max-width: 65ch;
