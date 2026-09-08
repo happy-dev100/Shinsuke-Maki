@@ -9,6 +9,7 @@ import { AnimateIn } from '@/components/ui/AnimateIn';
 import { AnimateList, AnimateItem } from '@/components/ui/AnimateList';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { HeroSection } from '@/components/sections/HeroSection';
+import { ResumeSection } from '@/components/sections/ResumeSection';
 import { SkillIconGrid } from '@/components/sections/SkillIconGrid';
 import { formatDate } from '@/lib/utils';
 import { fadeIn } from '@/lib/animations';
@@ -39,6 +40,13 @@ export default function HomePage() {
         tagline={t('hero_tagline')}
         ctaProjects={t('cta_projects')}
         ctaContact={t('cta_contact')}
+      />
+
+      <ResumeSection
+        title={t('resume_title')}
+        subtitle={t('resume_subtitle')}
+        downloadLabel={t('resume_download')}
+        formatLabel={t('resume_format')}
       />
 
       <AnimateIn variants={fadeIn}>

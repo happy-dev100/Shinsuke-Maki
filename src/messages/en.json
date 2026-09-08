@@ -25,7 +25,11 @@
     "view_all_skills": "View All Skills",
     "ai_section": "AI Stack",
     "recent_posts": "Recent Posts",
-    "view_all_posts": "View All Posts"
+    "view_all_posts": "View All Posts",
+    "resume_title": "Resume",
+    "resume_subtitle": "Download the full PDF of my career, projects, and technical background.",
+    "resume_download": "Download Resume",
+    "resume_format": "PDF · English"
   },
   "about": {
     "page_title": "About Me",

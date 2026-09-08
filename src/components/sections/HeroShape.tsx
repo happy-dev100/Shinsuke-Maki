@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 function createSeededRandom(seed: number) {
@@ -14,170 +13,202 @@ function createSeededRandom(seed: number) {
   };
 }
 
-/* ── Neural nodes orbiting the core ── */
-function NeuralNode({ radius, speed, offset, size }: {
-  radius: number; speed: number; offset: number; size: number;
-}) {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.elapsedTime * speed + offset;
-    ref.current.position.set(
-      Math.cos(t) * radius,
-      Math.sin(t * 0.7) * radius * 0.5,
-      Math.sin(t) * radius
-    );
-  });
-  return (
-    <mesh ref={ref}>
-      <sphereGeometry args={[size, 8, 8]} />
-      <meshStandardMaterial color="#60a5fa" emissive="#3b82f6" emissiveIntensity={2} roughness={0} metalness={0.2} />
-    </mesh>
-  );
-}
-
-/* ── Connection lines between core and nodes ── */
-function ConnectionLines({ nodeCount }: { nodeCount: number }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const linesRef = useRef<THREE.LineSegments>(null);
-
-  const { geometry } = useMemo(() => {
-    const positions = new Float32Array(nodeCount * 6);
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    return { geometry: geo };
-  }, [nodeCount]);
+function CrystalCore() {
+  const inner = useRef<THREE.Mesh>(null);
+  const shell = useRef<THREE.Mesh>(null);
+  const halo = useRef<THREE.Mesh>(null);
 
   useFrame(({ clock }) => {
-    if (!groupRef.current || !linesRef.current) return;
-    const positions = linesRef.current.geometry.attributes.position.array as Float32Array;
-    groupRef.current.children.forEach((child, i) => {
-      const mesh = child as THREE.Mesh;
-      positions[i * 6 + 0] = 0;
-      positions[i * 6 + 1] = 0;
-      positions[i * 6 + 2] = 0;
-      positions[i * 6 + 3] = mesh.position.x;
-      positions[i * 6 + 4] = mesh.position.y;
-      positions[i * 6 + 5] = mesh.position.z;
-    });
-    linesRef.current.geometry.attributes.position.needsUpdate = true;
-    void clock;
+    const t = clock.elapsedTime;
+    if (inner.current) {
+      inner.current.rotation.y = t * 0.7;
+      inner.current.rotation.x = t * 0.35;
+      inner.current.scale.setScalar(1 + Math.sin(t * 2.8) * 0.06);
+    }
+    if (shell.current) {
+      shell.current.rotation.y = -t * 0.28;
+      shell.current.rotation.z = t * 0.18;
+    }
+    if (halo.current) {
+      halo.current.rotation.z = t * 0.4;
+      halo.current.rotation.x = Math.PI / 2;
+    }
   });
 
   return (
     <group>
-      <group ref={groupRef}>
-        {Array.from({ length: nodeCount }).map((_, i) => (
-          <NeuralNode
-            key={i}
-            radius={1.4 + (i % 3) * 0.25}
-            speed={0.35 + i * 0.08}
-            offset={(i / nodeCount) * Math.PI * 2}
-            size={0.055 + (i % 3) * 0.025}
-          />
-        ))}
-      </group>
-      <lineSegments ref={linesRef} geometry={geometry}>
-        <lineBasicMaterial color="#3b82f6" transparent opacity={0.25} />
-      </lineSegments>
+      <mesh ref={inner}>
+        <octahedronGeometry args={[0.48, 0]} />
+        <meshStandardMaterial
+          color="#f8fafc"
+          emissive="#06b6d4"
+          emissiveIntensity={2.6}
+          roughness={0.05}
+          metalness={0.85}
+        />
+      </mesh>
+      <mesh ref={shell}>
+        <octahedronGeometry args={[0.92, 0]} />
+        <meshStandardMaterial
+          color="#0f766e"
+          emissive="#14b8a6"
+          emissiveIntensity={1.1}
+          roughness={0.12}
+          metalness={0.95}
+          wireframe
+        />
+      </mesh>
+      <mesh ref={halo}>
+        <torusGeometry args={[1.05, 0.012, 8, 64]} />
+        <meshStandardMaterial
+          color="#f59e0b"
+          emissive="#f59e0b"
+          emissiveIntensity={2.8}
+          roughness={0.2}
+        />
+      </mesh>
     </group>
   );
 }
 
-/* ── Outer wireframe sphere ── */
-function WireframeSphere() {
-  const ref = useRef<THREE.Mesh>(null);
+function HudFrames() {
+  const a = useRef<THREE.Group>(null);
+  const b = useRef<THREE.Group>(null);
+
   useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = clock.elapsedTime * 0.12;
-    ref.current.rotation.x = clock.elapsedTime * 0.07;
+    const t = clock.elapsedTime;
+    if (a.current) {
+      a.current.rotation.y = t * 0.22;
+      a.current.rotation.x = 0.35;
+    }
+    if (b.current) {
+      b.current.rotation.y = -t * 0.16;
+      b.current.rotation.z = 0.5;
+    }
   });
+
   return (
-    <mesh ref={ref}>
-      <icosahedronGeometry args={[1.65, 1]} />
-      <meshBasicMaterial color="#3b82f6" wireframe transparent opacity={0.12} />
-    </mesh>
+    <group>
+      <group ref={a}>
+        <mesh>
+          <torusGeometry args={[1.7, 0.018, 6, 4]} />
+          <meshStandardMaterial
+            color="#22d3ee"
+            emissive="#22d3ee"
+            emissiveIntensity={2.2}
+            roughness={0.15}
+          />
+        </mesh>
+      </group>
+      <group ref={b}>
+        <mesh>
+          <torusGeometry args={[2.05, 0.01, 6, 4]} />
+          <meshStandardMaterial
+            color="#f59e0b"
+            emissive="#f59e0b"
+            emissiveIntensity={1.6}
+            roughness={0.2}
+            transparent
+            opacity={0.85}
+          />
+        </mesh>
+      </group>
+    </group>
   );
 }
 
-/* ── Rotating outer ring ── */
-function OrbitRing() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.z = clock.elapsedTime * 0.25;
-    ref.current.rotation.x = 1.1;
-  });
-  return (
-    <mesh ref={ref}>
-      <torusGeometry args={[1.9, 0.008, 8, 80]} />
-      <meshStandardMaterial color="#93c5fd" emissive="#3b82f6" emissiveIntensity={1.5} transparent opacity={0.6} />
-    </mesh>
-  );
-}
+function DataColumns({ count = 18 }) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const seeds = useMemo(() => {
+    const random = createSeededRandom(4201);
+    return Array.from({ length: count }, () => ({
+      x: (random() - 0.5) * 3.4,
+      z: (random() - 0.5) * 3.4,
+      speed: 0.6 + random() * 1.4,
+      offset: random() * 6,
+      scale: 0.35 + random() * 0.7,
+    }));
+  }, [count]);
 
-/* ── Second ring at different angle ── */
-function OrbitRing2() {
-  const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (!ref.current) return;
-    ref.current.rotation.z = -clock.elapsedTime * 0.18;
-    ref.current.rotation.x = 0.4;
-    ref.current.rotation.y = clock.elapsedTime * 0.1;
+    seeds.forEach((s, i) => {
+      const y = ((clock.elapsedTime * s.speed + s.offset) % 4.4) - 2.2;
+      dummy.position.set(s.x, y, s.z);
+      dummy.scale.set(0.08, s.scale, 0.08);
+      dummy.updateMatrix();
+      ref.current?.setMatrixAt(i, dummy.matrix);
+    });
+    ref.current.instanceMatrix.needsUpdate = true;
   });
-  return (
-    <mesh ref={ref}>
-      <torusGeometry args={[2.1, 0.005, 8, 80]} />
-      <meshStandardMaterial color="#60a5fa" emissive="#60a5fa" emissiveIntensity={1} transparent opacity={0.35} />
-    </mesh>
-  );
-}
 
-/* ── Central glowing AI core ── */
-function AICore() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.rotation.y = clock.elapsedTime * 0.2;
-    ref.current.rotation.x = clock.elapsedTime * 0.13;
-    const scale = 1 + Math.sin(clock.elapsedTime * 1.2) * 0.04;
-    ref.current.scale.setScalar(scale);
-  });
   return (
-    <mesh ref={ref}>
-      <icosahedronGeometry args={[0.75, 4]} />
+    <instancedMesh ref={ref} args={[undefined, undefined, count]}>
+      <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial
-        color="#1d4ed8"
-        emissive="#3b82f6"
-        emissiveIntensity={0.8}
-        roughness={0.05}
-        metalness={0.95}
+        color="#67e8f9"
+        emissive="#22d3ee"
+        emissiveIntensity={3}
+        roughness={0.1}
+        transparent
+        opacity={0.8}
       />
-    </mesh>
+    </instancedMesh>
   );
 }
 
-/* ── Particle field ── */
-function Particles({ count = 120 }) {
+function OrbitBits({ count = 10 }) {
+  const group = useRef<THREE.Group>(null);
+
+  useFrame(({ clock }) => {
+    if (!group.current) return;
+    group.current.children.forEach((child, i) => {
+      const t = clock.elapsedTime * (0.4 + (i % 3) * 0.12) + i;
+      const r = 1.35 + (i % 4) * 0.18;
+      child.position.set(
+        Math.cos(t) * r,
+        Math.sin(t * 1.4) * 0.35,
+        Math.sin(t) * r,
+      );
+      child.rotation.y = t;
+    });
+  });
+
+  return (
+    <group ref={group}>
+      {Array.from({ length: count }).map((_, i) => (
+        <mesh key={i}>
+          <octahedronGeometry args={[0.055 + (i % 3) * 0.015, 0]} />
+          <meshStandardMaterial
+            color={i % 2 === 0 ? '#22d3ee' : '#fbbf24'}
+            emissive={i % 2 === 0 ? '#22d3ee' : '#f59e0b'}
+            emissiveIntensity={2.4}
+            roughness={0.1}
+            metalness={0.7}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
+function Dust({ count = 90 }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
-    const random = createSeededRandom(count * 997);
+    const random = createSeededRandom(771);
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 1.8 + random() * 1.2;
-      const theta = random() * Math.PI * 2;
-      const phi = Math.acos(2 * random() - 1);
-      arr[i * 3 + 0] = r * Math.sin(phi) * Math.cos(theta);
-      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      arr[i * 3 + 2] = r * Math.cos(phi);
+      arr[i * 3] = (random() - 0.5) * 4.4;
+      arr[i * 3 + 1] = (random() - 0.5) * 4.4;
+      arr[i * 3 + 2] = (random() - 0.5) * 4.4;
     }
     return arr;
   }, [count]);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
-    ref.current.rotation.y = clock.elapsedTime * 0.06;
-    ref.current.rotation.x = clock.elapsedTime * 0.03;
+    ref.current.rotation.y = clock.elapsedTime * 0.05;
   });
 
   return (
@@ -185,37 +216,37 @@ function Particles({ count = 120 }) {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#93c5fd" size={0.025} transparent opacity={0.7} sizeAttenuation />
+      <pointsMaterial color="#99f6e4" size={0.022} transparent opacity={0.7} sizeAttenuation />
     </points>
   );
 }
 
-/* ── Scene ── */
 function Scene() {
   return (
-    <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.5}>
-      <AICore />
-      <WireframeSphere />
-      <OrbitRing />
-      <OrbitRing2 />
-      <ConnectionLines nodeCount={8} />
-      <Particles count={120} />
-    </Float>
+    <group>
+      <CrystalCore />
+      <HudFrames />
+      <OrbitBits />
+      <DataColumns />
+      <Dust />
+    </group>
   );
 }
 
 export function HeroShape() {
   return (
-    <div style={{ width: 320, height: 320 }}>
+    <div className="hero-ai-orb relative" style={{ width: 360, height: 360 }}>
+      <div className="hero-ai-disk" />
+      <div className="hero-ai-glow" />
       <Canvas
-        camera={{ position: [0, 0, 5.5], fov: 42 }}
+        camera={{ position: [0, 0.35, 5.8], fov: 40 }}
         gl={{ antialias: true, alpha: true }}
-        style={{ background: 'transparent' }}
+        style={{ background: 'transparent', position: 'relative', zIndex: 1 }}
       >
-        <ambientLight intensity={0.3} />
-        <pointLight position={[3, 3, 3]} intensity={2} color="#60a5fa" />
-        <pointLight position={[-3, -2, -3]} intensity={1} color="#3b82f6" />
-        <pointLight position={[0, 0, 4]} intensity={0.5} color="#ffffff" />
+        <ambientLight intensity={0.22} />
+        <pointLight position={[2.8, 2.4, 3]} intensity={3.4} color="#22d3ee" />
+        <pointLight position={[-2.4, -1.6, 2]} intensity={2} color="#f59e0b" />
+        <pointLight position={[0, 0, 4]} intensity={1.2} color="#ecfeff" />
         <Scene />
       </Canvas>
     </div>
