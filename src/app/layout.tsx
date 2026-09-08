@@ -4,9 +4,9 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '牧 信介 | Full-Stack Engineer',
+  title: '牧 信介 | Senior AI & Full-stack Engineer',
   description:
-    'Full-Stack Engineer with 9 years of experience building reliable, scalable web applications.',
+    'Senior AI and Full-stack Engineer with 20+ years building production software, RAG systems, and LLM applications.',
 };
 
 export default function RootLayout({

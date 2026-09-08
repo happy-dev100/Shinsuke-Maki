@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Shinsuke Maki | Full-Stack Engineer",
-    "description": "Full-Stack Engineer with 9 years of experience building reliable, scalable web applications."
+    "title": "Shinsuke Maki | Senior AI & Full-stack Engineer",
+    "description": "Senior AI and Full-stack Engineer with 20+ years building production software, RAG systems, and LLM applications."
   },
   "nav": {
     "home": "Home",
@@ -16,7 +16,7 @@
   },
   "home": {
     "greeting": "Hi, I'm",
-    "hero_tagline": "I have over 9 years of web development experience and have spent the last 3 years developing a deep interest in Artificial Intelligence (AI) to master advanced AI technologies. I finally left my company to become independent and began working as a freelancer with the courage to believe that I could single-handedly replace a team.",
+    "hero_tagline": "Senior AI and full-stack engineer with 20+ years designing and operating production software. I build LLM applications end to end — RAG pipelines, tool-using agents, evaluation, and the services and interfaces that make them reliable at scale.",
     "cta_projects": "View Projects",
     "cta_contact": "Get in Touch",
     "featured_projects": "Featured Projects",
@@ -30,9 +30,9 @@
   "about": {
     "page_title": "About Me",
     "subtitle": "",
-    "intro": "Nine years of writing code. Three years of betting on AI. One decision to go independent and carry an entire team on my own. Technology is always the means — building something that truly matters to people is always the point.",
+    "intro": "I am a Senior AI and Full-Stack Engineer with 20+ years designing, building, and operating production software. I focus on LLM-powered applications — document ingestion, hybrid retrieval, RAG, structured outputs, and tool-using agents — and I ship complete products, not only model prototypes.",
     "story_title": "My Journey",
-    "story": "From the moment I wrote my first line of code, there was a pure, almost childlike joy in making something move on a screen. I still remember the day my first commit went live in production — I pumped my fist quietly at my desk, alone, and thought: this is what I want to do for the rest of my life. That was the beginning of a journey that has now spanned over nine years.\n\nIn the startup world, I learned to write code that works under pressure — when requirements change between morning and evening, when deadlines are yesterday, and when there is no safety net. In larger organizations, I felt the weight of responsibility that comes with systems used by hundreds of thousands of people, where a single architectural decision can cascade into an outage. Living both extremes forged the engineer I am today.\n\nThree years ago, everything shifted. I felt AI moving through the industry like a current — quiet at first, then impossible to ignore. I knew that standing on the sidelines was not an option. So I began studying in earnest: reading research papers late into the night, integrating LLM APIs into side projects, experimenting with prompt engineering, fine-tuning, and retrieval-augmented generation. Gradually, AI stopped being a curiosity and became a core part of my toolkit.\n\nThen came the hardest decision of my career. A stable salary, familiar colleagues, the comfort of belonging to something established — I walked away from all of it. Not recklessly, but with a clear-eyed conviction: that the combination of deep web engineering experience and real-world AI capability could make a single person as effective as an entire team. I left to prove that.\n\nToday, as a freelance engineer, I am living that proof — one project at a time. Technology is always the means; the end is always the same: to build something that genuinely helps people. That purpose has never changed since the day I wrote that first line of code.",
+    "story": "I started in 2005 as an independent web application developer in Nara, building database-driven systems for Japanese and international clients. That early work taught me to own the full path from requirements to a running product: interfaces, server logic, and data models.\n\nAt Sojin Co., Ltd. I worked as a frontend engineer, turning designs into production websites and commerce interfaces. At Kistem Co., Ltd. I moved to the backend, taking ownership of Rails services, relational data integrity, payment integrations, and production reliability.\n\nIn 2018 I joined BIX Tech Corp in Florida. I began as a senior full-stack and data systems engineer, then shifted into NLP and AI application work, and later into generative AI and RAG. Over those years I learned to put language models behind real products: ingestion pipelines, embeddings, hybrid search, evaluation, and the APIs and UIs that teams actually use.\n\nSince November 2024 I have been a Senior LLM Systems & Full-Stack Engineer at Sakana AI in Tokyo. I design production LLM systems across retrieval, agent orchestration, evaluation, security, and cloud infrastructure — with the same ownership I have always taken for software that has to run reliably beyond a demo.",
     "values_title": "What I Value",
     "value_quality_title": "Code Quality",
     "value_quality_desc": "Clean, readable, and maintainable code that stands the test of time.",
@@ -42,13 +42,17 @@
     "value_simplicity_desc": "The simplest solution that solves the problem effectively.",
     "value_learning_title": "Continuous Learning",
     "value_learning_desc": "Staying current with the evolving landscape of web technology.",
-    "location": "Nara, Japan",
-    "experience_years": "9+ Years",
+    "location": "Nara-shi, Japan",
+    "experience_years": "20+ Years",
     "experience_label": "Experience",
     "location_label": "Location",
-    "availability": "Open to opportunities",
+    "availability": "Open to professional inquiries",
     "availability_label": "Status",
-    "download_cv": "Download CV"
+    "download_cv": "Download CV",
+    "education_title": "Education",
+    "education_label": "Education",
+    "languages_label": "Languages",
+    "languages": "Japanese, English, Chinese"
   },
   "skills": {
     "page_title": "Skills",

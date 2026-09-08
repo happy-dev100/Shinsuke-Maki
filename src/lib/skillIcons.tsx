@@ -32,7 +32,11 @@ import {
   SiOpenai,
   SiLangchain,
   SiHuggingface,
+  SiJavascript,
+  SiFastapi,
+  SiRubyonrails,
 } from 'react-icons/si';
+import { FaAws } from 'react-icons/fa';
 
 export interface SkillIconDef {
   icon: IconType;
@@ -74,4 +78,16 @@ export const skillIconMap: Record<string, SkillIconDef> = {
   'OpenAI API':       { icon: SiOpenai,          color: 'currentColor' },
   LangChain:          { icon: SiLangchain,       color: '#1C3C3C' },
   'Hugging Face':     { icon: SiHuggingface,     color: '#FFD21E' },
+  JavaScript:         { icon: SiJavascript,      color: '#F7DF1E' },
+  FastAPI:            { icon: SiFastapi,         color: '#009688' },
+  'Ruby on Rails':    { icon: SiRubyonrails,     color: '#D30001' },
+  AWS:                { icon: FaAws,               color: '#FF9900' },
+  'LLM APIs':         { icon: SiOpenai,          color: 'currentColor' },
+  RAG:                { icon: SiLangchain,       color: '#1C3C3C' },
+  'AI Agents':        { icon: SiOpenai,          color: 'currentColor' },
+  'Prompt Engineering': { icon: SiOpenai,        color: 'currentColor' },
+  Embeddings:         { icon: SiLangchain,       color: '#1C3C3C' },
+  'Vector Search':    { icon: SiPostgresql,      color: '#4169E1' },
+  'Vector Databases': { icon: SiPostgresql,      color: '#4169E1' },
+  'LLM Evaluation':   { icon: SiOpenai,          color: 'currentColor' },
 };

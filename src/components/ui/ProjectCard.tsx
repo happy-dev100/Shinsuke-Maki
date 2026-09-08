@@ -46,7 +46,7 @@ export function ProjectCard({
         {project.image ? (
           <Image
             src={project.image}
-            alt={project.title}
+            alt={project.title[locale]}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -54,7 +54,7 @@ export function ProjectCard({
         ) : (
           <div className={`absolute inset-0 bg-gradient-to-br ${gradient} flex items-end p-5`}>
             <span className="text-white/20 font-bold text-5xl leading-none select-none">
-              {project.title.charAt(0)}
+              {project.title[locale].charAt(0)}
             </span>
           </div>
         )}
@@ -72,7 +72,7 @@ export function ProjectCard({
             href={`/projects/${project.slug}`}
             className="font-semibold text-neutral-900 dark:text-neutral-100 hover:underline underline-offset-4 leading-snug"
           >
-            {project.title}
+            {project.title[locale]}
           </Link>
           <div className="flex items-center gap-2 flex-shrink-0 mt-0.5">
             {project.demo && project.demo !== '/' && (

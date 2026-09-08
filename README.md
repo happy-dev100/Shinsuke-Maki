@@ -1,6 +1,6 @@
 # 牧 信介 — Portfolio
 
-Personal portfolio website for Shinsuke Maki, Full-Stack Engineer.
+Personal portfolio website for Shinsuke Maki, Senior AI & Full-stack Engineer.
 
 Built with Next.js 16, Tailwind CSS v4, and next-intl for bilingual (日本語/English) support.
 
