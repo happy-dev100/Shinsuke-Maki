@@ -38,6 +38,7 @@ export const projects: Project[] = [
       ja: 'シニアLLMシステム & フルスタックエンジニアとして、アーキテクチャ、エージェント制御、API連携、本番デリバリーを担当。',
     },
     technologies: ['Python', 'FastAPI', 'TypeScript', 'React', 'Next.js', 'AI Agents', 'Function Calling', 'PostgreSQL', 'Redis', 'Docker', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -63,6 +64,7 @@ export const projects: Project[] = [
       ja: 'RAGアーキテクチャ、検索設計、権限モデル、評価連携を主導。',
     },
     technologies: ['Python', 'FastAPI', 'RAG', 'Embeddings', 'Vector Databases', 'Hybrid Search', 'Reranking', 'PostgreSQL', 'Next.js', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -88,6 +90,7 @@ export const projects: Project[] = [
       ja: '取り込み・検索からプロンプト構築、生成、フロントエンド統合までRAGパイプラインを担当。',
     },
     technologies: ['Python', 'FastAPI', 'OpenAI API', 'LangChain', 'RAG', 'Embeddings', 'React', 'Next.js', 'PostgreSQL', 'Docker'],
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -113,6 +116,7 @@ export const projects: Project[] = [
       ja: 'LLM向けの評価データセット、回帰パイプライン、本番モニタリングを設計。',
     },
     technologies: ['Python', 'FastAPI', 'LLM Evaluation', 'RAG', 'PostgreSQL', 'Docker', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -138,6 +142,7 @@ export const projects: Project[] = [
       ja: '抽出ワークフロー、検証層、後続データストアとの連携を設計。',
     },
     technologies: ['Python', 'FastAPI', 'OpenAI API', 'LangChain', 'Structured Outputs', 'PostgreSQL', 'TypeScript'],
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -163,6 +168,7 @@ export const projects: Project[] = [
       ja: '検索・生成変更を比較するためのデータセット、採点ワークフロー、レポートを構築。',
     },
     technologies: ['Python', 'FastAPI', 'LangChain', 'RAG', 'LLM Evaluation', 'Docker'],
+    image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -188,6 +194,7 @@ export const projects: Project[] = [
       ja: '抽出、埋め込み、ベクトル検索サービスを実装し、FastAPIで公開。',
     },
     technologies: ['Python', 'FastAPI', 'Embeddings', 'Vector Search', 'PostgreSQL', 'Docker', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -213,6 +220,7 @@ export const projects: Project[] = [
       ja: '分類サービス、API連携、外部モデル呼び出しの運用制御を構築。',
     },
     technologies: ['Python', 'FastAPI', 'LLM APIs', 'PostgreSQL', 'Docker', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -238,6 +246,7 @@ export const projects: Project[] = [
       ja: 'アーキテクチャ、フルスタック実装、刷新のデリバリーをリード。',
     },
     technologies: ['TypeScript', 'React', 'Vue.js', 'Ruby on Rails', 'PostgreSQL', 'Redis', 'Docker', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -263,6 +272,7 @@ export const projects: Project[] = [
       ja: '運用向けのデータワークフロー、レポート機能、定期処理を設計。',
     },
     technologies: ['TypeScript', 'Ruby on Rails', 'PostgreSQL', 'MySQL', 'Redis', 'AWS'],
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -288,6 +298,7 @@ export const projects: Project[] = [
       ja: 'ビジネスロジック、データモデル、本番信頼性を担当したバックエンドエンジニア。',
     },
     technologies: ['Ruby on Rails', 'REST API', 'PostgreSQL', 'MySQL', 'Redis', 'Linux'],
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -313,6 +324,7 @@ export const projects: Project[] = [
       ja: '決済連携、コールバック処理、障害リカバリ経路を実装。',
     },
     technologies: ['Ruby on Rails', 'REST API', 'PostgreSQL', 'Redis', 'Linux'],
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -338,6 +350,7 @@ export const projects: Project[] = [
       ja: '一人で担当。スキーマ設計、UIとサーバロジックの実装、本番保守まで実施。',
     },
     technologies: ['HTML / CSS', 'JavaScript', 'PHP', 'MySQL', 'Linux'],
+    image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
   {
@@ -363,6 +376,7 @@ export const projects: Project[] = [
       ja: 'フロントエンドエンジニアとして、モックを本番UIへ実装し、バックエンドの注文機能と連携。',
     },
     technologies: ['HTML / CSS', 'JavaScript', 'jQuery', 'AJAX', 'PHP', 'MySQL'],
+    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1600&q=80',
     featured: true,
   },
 ];
